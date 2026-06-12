@@ -15,8 +15,9 @@
 </head>
 <body class="bg-zinc-950 text-white min-h-screen gradient-bg">
 
-  <!-- AUTH SCREEN -->
+  <!-- AUTH + WELCOME MODAL (unchanged) -->
   <div id="auth-screen" class="min-h-screen flex items-center justify-center p-6">
+    <!-- ... (same as previous version) ... -->
     <div class="max-w-md w-full">
       <div class="flex justify-center mb-8">
         <div class="flex items-center gap-3">
@@ -70,7 +71,7 @@
     </div>
   </div>
 
-  <!-- WELCOME MODAL -->
+  <!-- Welcome Modal (same as before) -->
   <div id="welcome-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
     <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-8">
       <div class="text-center mb-6">
@@ -121,9 +122,7 @@
         <button onclick="closeTasksModal()" class="text-zinc-400 hover:text-white">✕</button>
       </div>
 
-      <div id="current-task" class="space-y-6">
-        <!-- Dynamic task content -->
-      </div>
+      <div id="current-task" class="space-y-6"></div>
 
       <div class="mt-6 flex gap-3">
         <button onclick="closeTasksModal()" class="flex-1 py-4 border border-zinc-600 rounded-2xl text-sm">CLOSE</button>
@@ -150,6 +149,7 @@
       <h2 id="welcome-name" class="text-2xl font-bold">Welcome back</h2>
       <p class="text-zinc-400 text-sm">Complete tasks to earn ₦500 each</p>
 
+      <!-- Balance Card with Progress Bar -->
       <div class="mt-6 bg-gradient-to-br from-zinc-900 to-zinc-800 border border-yellow-400/30 rounded-3xl p-6">
         <div class="flex justify-between items-start">
           <div>
@@ -158,11 +158,21 @@
               <span class="text-3xl font-black text-yellow-400">₦</span>
               <span id="balance" class="balance-text neon-glow ml-1">0</span>
             </div>
-            <p class="text-emerald-400 text-xs mt-1">₦85,000 limit</p>
           </div>
           <button onclick="toggleBalanceVisibility()" class="mt-1">
             <i class="fa-solid fa-eye text-xl text-zinc-400" id="eye-icon"></i>
           </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mt-4">
+          <div class="flex justify-between text-xs text-zinc-400 mb-1">
+            <span>Progress to ₦86,000</span>
+            <span id="progress-text">0%</span>
+          </div>
+          <div class="h-2 bg-zinc-700 rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-2 bg-yellow-400 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
         </div>
 
         <div id="cashout-warning" class="hidden mt-4 bg-amber-500/10 border border-amber-500 text-amber-400 text-xs p-3 rounded-2xl">
@@ -182,7 +192,15 @@
         </button>
       </div>
 
-      <!-- YouTube + Testimonials (kept short) -->
+      <!-- App Comments / Testimonials -->
+      <div class="mt-10">
+        <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-comment-dots"></i>
+          What Users Say About OFUNDS
+        </h3>
+        <div id="app-comments" class="space-y-4"></div>
+      </div>
+
       <div class="mt-8 text-center text-[10px] text-zinc-500">
         This is a demo. Earnings are simulated.
       </div>
@@ -192,7 +210,7 @@
   <script>
     let currentUser = null;
     let balance = 0;
-    const MAX_BALANCE = 85000;
+    const MAX_BALANCE = 86000;
     let isVisible = true;
     let currentTaskIndex = 0;
 
@@ -204,83 +222,44 @@
       "https://www.facebook.com/profile.php?id=61567096250869",
       "https://www.facebook.com/100083081181484/posts/982357494543614/",
       "https://www.facebook.com/share/r/1CopM2Gb3V/",
-      "https://www.facebook.com/share/r/18A1XH1u8C/",
-      "https://www.facebook.com/share/r/1CttHUMkxx/",
-      "https://www.facebook.com/share/r/1CGKXHQrWy/",
-      // ... (more can be added)
+      // Add more links here if needed
     ];
 
-    function switchTab(tab) { /* same as before */ 
-      document.getElementById('login-form').classList.toggle('hidden', tab === 1);
-      document.getElementById('signup-form').classList.toggle('hidden', tab === 0);
-      document.getElementById('login-tab').classList.toggle('bg-zinc-800', tab === 0);
-      document.getElementById('signup-tab').classList.toggle('bg-zinc-800', tab === 1);
+    const appComments = [
+      { name: "Aisha Bello", comment: "OFUNDS is the best earning app I've used. Tasks are simple and payments are fast!" },
+      { name: "Chinedu Okoro", comment: "I cleared my rent by completing daily tasks. Highly recommended!" },
+      { name: "Fatima Yusuf", comment: "Love how easy it is to promote businesses and earn ₦500 per task." },
+      { name: "Emeka Nwosu", comment: "The video watching and social engagement tasks are straightforward." },
+      { name: "Zainab Ibrahim", comment: "Great platform! I earned ₦15,000 in one week just from tasks." }
+    ];
+
+    function renderAppComments() {
+      const container = document.getElementById('app-comments');
+      container.innerHTML = '';
+      appComments.forEach(c => {
+        const div = document.createElement('div');
+        div.className = "bg-zinc-900 border border-zinc-700 rounded-3xl p-5";
+        div.innerHTML = `
+          <p class="italic text-zinc-300">"${c.comment}"</p>
+          <p class="text-yellow-400 text-sm mt-3">- ${c.name}</p>
+        `;
+        container.appendChild(div);
+      });
     }
 
-    function togglePassword(id) { /* same */ 
-      const input = document.getElementById(id);
-      const icon = document.getElementById(id.includes('login') ? 'login-eye' : 'signup-eye');
-      if (input.type === "password") {
-        input.type = "text"; icon.classList.replace('fa-eye', 'fa-eye-slash');
-      } else {
-        input.type = "password"; icon.classList.replace('fa-eye-slash', 'fa-eye');
-      }
-    }
-
-    function handleSignup() { /* same as previous */ 
-      // ... (kept short for space)
-      const firstname = document.getElementById('signup-firstname').value.trim();
-      const email = document.getElementById('signup-email').value.trim();
-      const password = document.getElementById('signup-password').value.trim();
-      if (!firstname || !email || !password) return alert("Fill all fields");
-      currentUser = { firstname, email, password };
-      localStorage.setItem("ofunds_user", JSON.stringify(currentUser));
-      alert("Account created! Login now.");
-      switchTab(0);
-    }
-
-    function handleLogin() {
-      const email = document.getElementById('login-email').value.trim();
-      const password = document.getElementById('login-password').value.trim();
-      if (!email || !password) return alert("Enter email & password");
-
-      const saved = localStorage.getItem("ofunds_user");
-      if (!saved) return alert("No account. Sign up first.");
-
-      const user = JSON.parse(saved);
-      if (user.email === email && user.password === password) {
-        currentUser = user;
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('welcome-modal').classList.remove('hidden');
-      } else {
-        alert("Invalid credentials");
-      }
-    }
-
-    function continueToDashboard() {
-      document.getElementById('welcome-modal').classList.add('hidden');
-      document.getElementById('dashboard').classList.remove('hidden');
-      document.getElementById('welcome-name').textContent = `Welcome, ${currentUser.firstname}`;
-      updateBalanceDisplay();
+    function updateProgressBar() {
+      const percentage = Math.min((balance / MAX_BALANCE) * 100, 100);
+      document.getElementById('progress-bar').style.width = `${percentage}%`;
+      document.getElementById('progress-text').textContent = `${Math.round(percentage)}%`;
     }
 
     function updateBalanceDisplay() {
       document.getElementById('balance').textContent = balance.toLocaleString('en-NG');
+      updateProgressBar();
       document.getElementById('cashout-warning').classList.toggle('hidden', balance <= MAX_BALANCE * 0.8);
     }
 
-    function toggleBalanceVisibility() {
-      isVisible = !isVisible;
-      const bal = document.getElementById('balance');
-      const icon = document.getElementById('eye-icon');
-      if (!isVisible) {
-        bal.textContent = "••••••";
-        icon.classList.replace('fa-eye', 'fa-eye-slash');
-      } else {
-        updateBalanceDisplay();
-        icon.classList.replace('fa-eye-slash', 'fa-eye');
-      }
-    }
+    // ... (rest of the script functions remain the same as previous version)
 
     function openTasksModal() {
       currentTaskIndex = 0;
@@ -299,18 +278,16 @@
       container.innerHTML = `
         <div class="text-center">
           <p class="text-emerald-400 font-bold mb-2">TASK ${currentTaskIndex + 1}</p>
-          <p class="text-zinc-400 mb-6">Watch / Engage for at least 10 seconds to earn ₦500</p>
+          <p class="text-zinc-400 mb-6">Engage for at least 10 seconds to earn ₦500</p>
           
-          <a href="${link}" target="_blank" 
-             onclick="startTaskTimer(this)" 
+          <a href="${link}" target="_blank" onclick="startTaskTimer(this)" 
              class="block bg-zinc-800 hover:bg-zinc-700 p-6 rounded-3xl text-sm break-all">
             ${link}
           </a>
           
-          <div id="timer-status" class="mt-6 text-xs text-zinc-500">Click the link above and stay for 10 seconds</div>
+          <div id="timer-status" class="mt-6 text-xs text-zinc-500">Click link & stay 10 seconds</div>
           
-          <button id="complete-btn" 
-            onclick="completeTask()" 
+          <button id="complete-btn" onclick="completeTask()" 
             class="hidden mt-6 w-full bg-emerald-500 py-4 rounded-2xl font-bold">
             ✅ CLAIM ₦500
           </button>
@@ -321,7 +298,7 @@
     let taskTimer = null;
     let timerStarted = false;
 
-    function startTaskTimer(linkEl) {
+    function startTaskTimer() {
       if (timerStarted) return;
       timerStarted = true;
       
@@ -331,11 +308,10 @@
       taskTimer = setInterval(() => {
         seconds++;
         status.textContent = `Engaging... ${seconds}s / 10s`;
-        
         if (seconds >= 10) {
           clearInterval(taskTimer);
           document.getElementById('complete-btn').classList.remove('hidden');
-          status.textContent = "You can now claim your reward!";
+          status.textContent = "Ready to claim reward!";
         }
       }, 1000);
     }
@@ -345,11 +321,9 @@
         alert("Maximum balance reached!");
         return;
       }
-      
       balance += 500;
       updateBalanceDisplay();
-      alert("✅ ₦500 added to your balance!");
-      
+      alert("✅ ₦500 added successfully!");
       clearInterval(taskTimer);
       timerStarted = false;
       currentTaskIndex++;
@@ -359,6 +333,76 @@
     function nextTask() {
       currentTaskIndex++;
       showTask();
+    }
+
+    function continueToDashboard() {
+      document.getElementById('welcome-modal').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
+      document.getElementById('welcome-name').textContent = `Welcome, ${currentUser.firstname}`;
+      updateBalanceDisplay();
+      renderAppComments();
+    }
+
+    // Login, Signup, Logout, etc. (same as previous)
+    function handleLogin() {
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+      if (!email || !password) return alert("Enter email & password");
+
+      const saved = localStorage.getItem("ofunds_user");
+      if (!saved) return alert("No account. Sign up first.");
+
+      const user = JSON.parse(saved);
+      if (user.email === email && user.password === password) {
+        currentUser = user;
+        document.getElementById('auth-screen').classList.add('hidden');
+        document.getElementById('welcome-modal').classList.remove('hidden');
+      } else {
+        alert("Invalid credentials");
+      }
+    }
+
+    function handleSignup() {
+      const firstname = document.getElementById('signup-firstname').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value.trim();
+      if (!firstname || !email || !password) return alert("Fill all fields");
+      currentUser = { firstname, email, password };
+      localStorage.setItem("ofunds_user", JSON.stringify(currentUser));
+      alert("Account created! Login now.");
+      switchTab(0);
+    }
+
+    function switchTab(tab) {
+      document.getElementById('login-form').classList.toggle('hidden', tab === 1);
+      document.getElementById('signup-form').classList.toggle('hidden', tab === 0);
+      document.getElementById('login-tab').classList.toggle('bg-zinc-800', tab === 0);
+      document.getElementById('signup-tab').classList.toggle('bg-zinc-800', tab === 1);
+    }
+
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      const icon = document.getElementById(id.includes('login') ? 'login-eye' : 'signup-eye');
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        input.type = "password";
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      }
+    }
+
+    function toggleBalanceVisibility() {
+      isVisible = !isVisible;
+      const bal = document.getElementById('balance');
+      const icon = document.getElementById('eye-icon');
+      if (!isVisible) {
+        bal.textContent = "••••••";
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        updateBalanceDisplay();
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      }
     }
 
     function logout() {
@@ -371,4 +415,4 @@
     window.onload = () => {};
   </script>
 </body>
-  </html>
+              </html>
