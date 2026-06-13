@@ -7,170 +7,225 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    body { font-family: system-ui, sans-serif; font-size: 0.9rem; }
-    .gradient-bg { background: linear-gradient(135deg, #0f172a, #1e2937); }
-    .balance-text { font-size: 2.25rem; font-weight: 900; }
-    .neon-glow { text-shadow: 0 0 15px rgb(234 179 8); }
-    video { max-height: 65vh; width: 100%; border-radius: 16px; background: #000; }
+    body { font-family: 'Inter', sans-serif; font-size: 0.9rem; }
+    .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
+    .balance-text { font-size: 2.25rem; font-weight: 900; letter-spacing: -1px; }
+    .neon-glow { text-shadow: 0 0 20px rgb(234 179 8); }
+    video { width: 100%; border-radius: 16px; background: #000; }
   </style>
 </head>
 <body class="bg-zinc-950 text-white min-h-screen gradient-bg">
 
-  <!-- AUTH -->
-  <div id="auth-screen" class="min-h-screen flex items-center justify-center p-4">
+  <!-- AUTH SCREEN -->
+  <div id="auth-screen" class="min-h-screen flex items-center justify-center p-6">
     <div class="max-w-md w-full">
-      <div class="text-center mb-8">
-        <div class="inline-flex items-center gap-3">
-          <div class="w-12 h-12 bg-yellow-400 rounded-3xl flex items-center justify-center">
-            <i class="fa-solid fa-coins text-3xl text-zinc-900"></i>
+      <div class="flex justify-center mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-yellow-400 rounded-2xl flex items-center justify-center">
+            <i class="fa-solid fa-coins text-zinc-900 text-2xl"></i>
           </div>
-          <h1 class="text-4xl font-black tracking-tighter">OFUNDS</h1>
+          <div>
+            <h1 class="text-3xl font-black tracking-tighter">OFUNDS</h1>
+            <p class="text-yellow-400 text-xs -mt-1">EARN LIVE</p>
+          </div>
         </div>
-        <p class="text-yellow-400 mt-1">WATCH • EARN • REPEAT</p>
       </div>
 
-      <div class="bg-zinc-900 rounded-3xl p-1 flex mb-8">
-        <button onclick="switchTab(0)" id="login-tab" class="flex-1 py-4 rounded-3xl font-semibold bg-zinc-800">LOGIN</button>
-        <button onclick="switchTab(1)" id="signup-tab" class="flex-1 py-4 rounded-3xl font-semibold">SIGN UP</button>
+      <div class="bg-zinc-900 rounded-3xl p-1 flex mb-6">
+        <button onclick="switchTab(0)" id="login-tab" class="flex-1 py-3 rounded-3xl font-semibold bg-zinc-800 text-white text-sm">Login</button>
+        <button onclick="switchTab(1)" id="signup-tab" class="flex-1 py-3 rounded-3xl font-semibold text-sm">Sign Up</button>
       </div>
 
-      <!-- Login Form -->
       <div id="login-form">
-        <input id="login-email" type="email" placeholder="Email" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-5 py-4 mb-4 focus:outline-none focus:border-yellow-400">
-        <div class="relative mb-6">
-          <input id="login-password" type="password" placeholder="Password" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400">
-          <button onclick="togglePassword('login-password')" class="absolute right-5 top-4 text-zinc-400"><i class="fa-solid fa-eye" id="login-eye"></i></button>
+        <div class="space-y-4">
+          <input type="email" id="login-email" placeholder="Email address" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+          <div class="relative">
+            <input type="password" id="login-password" placeholder="Password" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+            <button onclick="togglePassword('login-password')" class="absolute right-5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white">
+              <i class="fa-solid fa-eye" id="login-eye"></i>
+            </button>
+          </div>
+          <button onclick="handleLogin()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-4 rounded-2xl text-base active:scale-95 transition">
+            LOGIN
+          </button>
         </div>
-        <button onclick="handleLogin()" class="w-full bg-yellow-400 text-zinc-900 font-bold py-4 rounded-2xl text-lg">LOGIN</button>
       </div>
 
-      <!-- Signup Form -->
       <div id="signup-form" class="hidden">
-        <input id="signup-name" type="text" placeholder="Full Name" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-5 py-4 mb-4 focus:outline-none focus:border-yellow-400">
-        <input id="signup-email" type="email" placeholder="Email" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-5 py-4 mb-4 focus:outline-none focus:border-yellow-400">
-        <div class="relative mb-6">
-          <input id="signup-password" type="password" placeholder="Password" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400">
-          <button onclick="togglePassword('signup-password')" class="absolute right-5 top-4 text-zinc-400"><i class="fa-solid fa-eye" id="signup-eye"></i></button>
+        <div class="space-y-4">
+          <input type="text" id="signup-firstname" placeholder="First name" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+          <input type="email" id="signup-email" placeholder="Email address" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+          <div class="relative">
+            <input type="password" id="signup-password" placeholder="Create password" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+            <button onclick="togglePassword('signup-password')" class="absolute right-5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white">
+              <i class="fa-solid fa-eye" id="signup-eye"></i>
+            </button>
+          </div>
+          <button onclick="handleSignup()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-4 rounded-2xl text-base active:scale-95 transition">
+            CREATE ACCOUNT
+          </button>
         </div>
-        <button onclick="handleSignup()" class="w-full bg-yellow-400 text-zinc-900 font-bold py-4 rounded-2xl text-lg">CREATE ACCOUNT</button>
       </div>
     </div>
   </div>
 
   <!-- WELCOME MODAL -->
-  <div id="welcome-modal" class="hidden fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4">
-    <div class="bg-zinc-900 rounded-3xl max-w-md w-full p-8 text-center">
-      <h2 class="text-3xl font-bold mb-6">Welcome to OFUNDS</h2>
-      <p class="text-zinc-300 mb-8">Promote businesses by watching short videos, visiting pages, liking & commenting. Earn ₦500 per completed task.</p>
-      <button onclick="continueToDashboard()" class="w-full bg-yellow-400 text-zinc-900 font-bold py-5 rounded-2xl text-lg">CONTINUE TO DASHBOARD →</button>
-    </div>
-  </div>
-
-  <!-- DASHBOARD -->
-  <div id="dashboard" class="hidden min-h-screen">
-    <div class="max-w-md mx-auto p-5">
-      <div class="flex justify-between items-center mb-8">
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 bg-yellow-400 rounded-2xl flex items-center justify-center">
-            <i class="fa-solid fa-coins text-zinc-900"></i>
-          </div>
-          <h1 class="text-2xl font-black">OFUNDS</h1>
+  <div id="welcome-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
+    <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-8">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 mx-auto bg-yellow-400 rounded-2xl flex items-center justify-center mb-4">
+          <i class="fa-solid fa-coins text-zinc-900 text-4xl"></i>
         </div>
-        <button onclick="logout()" class="text-zinc-400"><i class="fa-solid fa-right-from-bracket"></i></button>
+        <h2 class="text-3xl font-black">Welcome to OFUNDS!</h2>
       </div>
-
-      <div class="bg-zinc-900 rounded-3xl p-6 mb-8">
-        <div class="flex justify-between">
-          <div>
-            <p class="text-xs text-zinc-400">BALANCE</p>
-            <div id="balance-display" class="text-5xl font-black text-emerald-400 balance-text neon-glow">₦0</div>
-          </div>
-          <button onclick="toggleBalance()" id="toggle-btn"><i class="fa-solid fa-eye text-2xl"></i></button>
+      <div class="space-y-6 text-sm">
+        <p class="text-zinc-300">OFUNDS helps you promote businesses and earn easily.</p>
+        <div class="bg-zinc-800 rounded-2xl p-5 space-y-4">
+          <h3 class="font-semibold text-yellow-400">How You Earn</h3>
+          <ul class="space-y-3 text-zinc-300">
+            <li class="flex gap-3">• Watch promotional videos</li>
+            <li class="flex gap-3">• Visit business pages</li>
+            <li class="flex gap-3">• Like, comment & share</li>
+          </ul>
+          <p class="text-emerald-400 font-bold text-center py-2 border border-emerald-500/30 rounded-2xl">₦500 per completed video/task</p>
         </div>
-
-        <div class="mt-6">
-          <div class="flex justify-between text-xs mb-1 text-zinc-400">
-            <span>Progress</span>
-            <span id="percent">0%</span>
-          </div>
-          <div class="h-2.5 bg-zinc-800 rounded-full overflow-hidden">
-            <div id="progress" class="h-2.5 bg-yellow-400 w-0 transition-all duration-300"></div>
-          </div>
-          <p class="text-[10px] text-zinc-500 mt-1">Limit: ₦86,000</p>
-        </div>
-
-        <button onclick="openTasksModal()" class="mt-8 w-full py-5 bg-emerald-500 hover:bg-emerald-600 rounded-2xl font-bold text-lg flex items-center justify-center gap-3">
-          <i class="fa-solid fa-play"></i> EARN LIVE - WATCH VIDEOS
-        </button>
-
-        <button onclick="window.open('https://ofundwithdraw.netlify.app/', '_blank')" class="mt-4 w-full py-4 bg-sky-600 hover:bg-sky-700 rounded-2xl font-bold flex items-center justify-center gap-2">
-          <i class="fa-solid fa-money-bill-wave"></i> WITHDRAW
-        </button>
       </div>
-
-      <!-- Testimonials -->
-      <div class="mb-8">
-        <h3 class="font-semibold mb-4 text-yellow-400">What Users Say</h3>
-        <div id="testimonials" class="space-y-4 text-sm"></div>
-      </div>
+      <button onclick="continueToDashboard()" class="mt-8 w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-5 rounded-2xl text-lg">CONTINUE TO DASHBOARD</button>
     </div>
   </div>
 
   <!-- TASKS MODAL -->
-  <div id="tasks-modal" class="hidden fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4">
-    <div class="bg-zinc-900 rounded-3xl w-full max-w-lg p-6">
+  <div id="tasks-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
+    <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-6">
       <div class="flex justify-between mb-4">
-        <h3 class="font-bold">Watch &amp; Earn ₦500</h3>
-        <button onclick="closeTasksModal()" class="text-3xl leading-none text-zinc-400">×</button>
+        <h3 class="font-bold text-xl">Earn Live - Watch & Earn</h3>
+        <button onclick="closeTasksModal()" class="text-2xl text-zinc-400">✕</button>
       </div>
-      <video id="task-video" controls onended="videoEnded()" class="w-full rounded-2xl"></video>
-      <div id="task-title" class="mt-4 text-center font-medium"></div>
-      <div class="flex gap-3 mt-8">
-        <button onclick="closeTasksModal()" class="flex-1 py-4 border border-zinc-600 rounded-2xl">Close</button>
-        <button onclick="nextVideo()" id="next-btn" class="flex-1 py-4 bg-yellow-400 text-zinc-900 font-bold rounded-2xl hidden">NEXT VIDEO</button>
+      <div id="video-container" class="space-y-4">
+        <video id="task-video" controls class="w-full rounded-2xl" onended="videoEnded()"></video>
+        <div id="task-info" class="text-center text-sm text-zinc-400"></div>
+      </div>
+      <div class="flex gap-3 mt-6">
+        <button onclick="closeTasksModal()" class="flex-1 py-4 border border-zinc-600 rounded-2xl">CLOSE</button>
+        <button onclick="nextVideo()" id="next-btn" class="flex-1 py-4 bg-yellow-400 text-zinc-900 rounded-2xl font-bold hidden">NEXT VIDEO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="hidden min-h-screen pb-12">
+    <nav class="bg-zinc-900 px-5 py-4 flex justify-between items-center border-b border-zinc-800">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-yellow-400 rounded-2xl flex items-center justify-center">
+          <i class="fa-solid fa-coins text-zinc-900 text-xl"></i>
+        </div>
+        <h1 class="font-black text-xl tracking-tighter">OFUNDS</h1>
+      </div>
+      <button onclick="logout()" class="text-zinc-400 hover:text-red-400">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+    </nav>
+
+    <div class="p-5 max-w-5xl mx-auto">
+      <h2 id="welcome-name" class="text-2xl font-bold">Welcome back</h2>
+      <p class="text-zinc-400 text-sm">Watch videos to earn ₦500 each</p>
+
+      <div class="mt-6 bg-gradient-to-br from-zinc-900 to-zinc-800 border border-yellow-400/30 rounded-3xl p-6">
+        <div class="flex justify-between items-start">
+          <div>
+            <p class="uppercase text-xs tracking-widest text-zinc-400">TOTAL BALANCE</p>
+            <div class="flex items-baseline mt-2">
+              <span class="text-3xl font-black text-yellow-400">₦</span>
+              <span id="balance" class="balance-text neon-glow ml-1">0</span>
+            </div>
+          </div>
+          <button onclick="toggleBalanceVisibility()" class="mt-1">
+            <i class="fa-solid fa-eye text-xl text-zinc-400" id="eye-icon"></i>
+          </button>
+        </div>
+
+        <div class="mt-4">
+          <div class="flex justify-between text-xs text-zinc-400 mb-1">
+            <span>Progress to ₦86,000</span>
+            <span id="progress-text">0%</span>
+          </div>
+          <div class="h-2 bg-zinc-700 rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-2 bg-yellow-400 rounded-full transition-all" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <button onclick="openTasksModal()" class="mt-6 w-full bg-emerald-500 py-6 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-emerald-600 transition">
+          <i class="fa-solid fa-play"></i>
+          <span>EARN LIVE - WATCH VIDEOS</span>
+        </button>
+
+        <button onclick="window.open('https://ofundwithdraw.netlify.app/', '_blank')" class="mt-4 w-full bg-sky-500 py-5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-sky-600 transition">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          WITHDRAW
+        </button>
+      </div>
+
+      <div class="mt-10">
+        <h3 class="font-bold text-lg mb-4">What Users Say</h3>
+        <div id="app-comments" class="space-y-4"></div>
       </div>
     </div>
   </div>
 
   <script>
+    let currentUser = null;
     let balance = 0;
     const MAX_BALANCE = 86000;
-    let currentUser = null;
-    let isBalanceVisible = true;
+    let isVisible = true;
     let currentVideoIndex = 0;
 
-    // UPDATED VIDEO LIST with FULL PATHS from attachments folder
+    // ==================== EASY TO ADD VIDEOS ====================
+    
+  
     const videos = [
-      {src: "/home/workdir/attachments/AQP1w-b0tEWWzqt-y1HoyOJHGNuxLsLfmaT61oPyNY5AzlDsgNO5dn4woC4sVWYyGFfVhyQ9Ewsf7VOKh6nPQUKJ8HZ0Vqft5sYLYMX0pw.mp4", title: "Luxury Sandals Wholesale"},
-      {src: "/home/workdir/attachments/AQMhvyRBUiaPkHHl4uRa0_BfwRSTaLZdNcXNI5q3ubooYzaikK0LYZc9D28k9XvS1W7ZT-ahwXYpKtopjMuz7LIJ59D6cqPJRw2Cjzo.mp4", title: "MelonyPine Parfait Business"},
-      {src: "/home/workdir/attachments/AQNb26At5my-nO_uWIoMmgGDXHEK6MAjJPu6cw3gCOLGnjaKd2lJ8VZAGpLyr4hgrKiQnLU8pzqFUSuhr94yBwt6RwDAH2GuukLe8Xpiig.mp4", title: "Cyncel Cosmetics Wholesale"},
-      {src: "/home/workdir/attachments/AQPx3ycxzZnaRADsZkmFfvGagSXmdmrxcQKO2PbqiDUcxPWxiEBpqemaQXW8_1SapQLRUjiBkXafEKPq8Xf3SGJ8HVnN2Zq1P6jytBBwcg.mp4", title: "Hakuna Human Hair Factory"},
-      {src: "/home/workdir/attachments/AQP2bSG0Lf5sgLwL1oAnVOWKkvwQoo6ay-64M8ddAuwO4IqbySnYKI7BkjRJxK1ZstOiRJS5VNUxWVoV0X319kc1vJUTA8S6BdDUzx8M2A.mp4", title: "M.B Collection Fashion"},
-      {src: "/home/workdir/attachments/AQO_GecNHRwk546dDFwcnijXpvnkmqm3pjIKoRCCWiwtnZovOQ5mi0jGDiWSfKr250xEmlF1q3aBqEAvoeJx9pTqeRTkZawufWt09OFnhA.mp4", title: "Rafiki - Shop China Pay in Naira"},
-      {src: "/home/workdir/attachments/AQNU81d_QNBSiqSjKYrJ7KEg_ootMrf9T8Uo7Z7Fs7AYXrrcQQzirte36ZeCn1HSxrM5AWKlHdsJk4lZOadoTTquwXC3fhbiTUT_5ip8kg.mp4", title: "Factory Fan Products"},
-      // NEW VIDEOS
-      {src: "/home/workdir/attachments/AQPJ7YjhdytnXy05yOpUYTYI2-tqxnSPRxHzT-M3ieQp7LEDk6sKrbGikyRxDTN5dkeltobQhRvoM1LwpeLXa8K4kXhn0q38TGFlAi2XWw.mp4", title: "Huawei Mate 30 Pro Demo"},
-      {src: "/home/workdir/attachments/AQMGxQGmKxwa5_YnBr2LvZANtIOe61zM_7jMn3wBXVCNoCzc4COBKQKilRwXQxq30MuJXcl5Ieb5Nl_73V9YH_kP6oQAMyojrdbCOLCEXA.mp4", title: "Custom Mattress Factory"},
-      {src: "/home/workdir/attachments/AQPCAtHZpE8Nq3VmfPoC-mxqNbswl_6FtxZmlAFxOqGjf462FXLNN5WR0ZLBRE2F0RQGWWfpRnDTjxYniWCyor4JmwTYNz5B6QH6jT-2Qw.mp4", title: "Ball Bearing Factory"},
-      {src: "/home/workdir/attachments/AQPb8t3wHM9ERXX6ZDW_VvcAi0IMHQA6tK4S4tGaFgpZ2o4qgstMphyWhPLj-TLMFyY__yArGOFDI2UarRWsCjoDSrTrc8sWc1kXBvot6A.mp4", title: "Foldable Smartphones"},
-      {src: "/home/workdir/attachments/AQNYeOghxFubc8RDtrTKHwQ7rH7bmXdeTPEcyF8klNOom5Dr-E9xYHY6tYrLLuQIDokfLaTyEenPPnpQVVm5-c2-z00bN6azZRaB_Onreg.mp4", title: "Buy Water Easy Delivery"},
-      {src: "/home/workdir/attachments/AQP44SLDIgTTkzPL1bG7UaB4qSvJy4oq_U4dilpetsHroV4zOaFsSbG-KSy2F1NRk0n9S-XI8cXClkXAc7sO7xRUYRNQZwP5fsDiAoN_0g.mp4", title: "Dr Davey Lotion Wholesale"}
+      { src: "AQPJ7YjhdytnXy05yOpUYTYI2-tqxnSPRxHzT-M3ieQp7LEDk6sKrbGikyRxDTN5dkeltobQhRvoM1LwpeLXa8K4kXhn0q38TGFlAi2XWw.mp4", title: "Huawei Mate 30 Pro" },
+      { src: "AQPx3ycxzZnaRADsZkmFfvGagSXmdmrxcQKO2PbqiDUcxPWxiEBpqemaQXW8_1SapQLRUjiBkXafEKPq8Xf3SGJ8HVnN2Zq1P6jytBBwcg.mp4", title: "Hakuna Human Hair Factory" },
+      { src: "AQMGxQGmKxwa5_YnBr2LvZANtIOe61zM_7jMn3wBXVCNoCzc4COBKQKilRwXQxq30MuJXcl5Ieb5Nl_73V9YH_kP6oQAMyojrdbCOLCEXA.mp4", title: "Custom Mattress Factory" },
+      { src: "AQPCAtHZpE8Nq3VmfPoC-mxqNbswl_6FtxZmlAFxOqGjf462FXLNN5WR0ZLBRE2F0RQGWWfpRnDTjxYniWCyor4JmwTYNz5B6QH6jT-2Qw.mp4", title: "Ball Bearing Factory" },
+      { src: "AQPb8t3wHM9ERXX6ZDW_VvcAi0IMHQA6tK4S4tGaFgpZ2o4qgstMphyWhPLj-TLMFyY__yArGOFDI2UarRWsCjoDSrTrc8sWc1kXBvot6A.mp4", title: "Foldable Smartphones" },
+      { src: "AQP44SLDIgTTkzPL1bG7UaB4qSvJy4oq_U4dilpetsHroV4zOaFsSbG-KSy2F1NRk0n9S-XI8cXClkXAc7sO7xRUYRNQZwP5fsDiAoN_0g.mp4", title: "Dr Davey Lotion Wholesale" },
+      { src: "AQNYeOghxFubc8RDtrTKHwQ7rH7bmXdeTPEcyF8klNOom5Dr-E9xYHY6tYrLLuQIDokfLaTyEenPPnpQVVm5-c2-z00bN6azZRaB_Onreg.mp4", title: "Buy Water Easy Delivery" },
+      { src: "AQP1w-b0tEWWzqt-y1HoyOJHGNuxLsLfmaT61oPyNY5AzlDsgNO5dn4woC4sVWYyGFfVhyQ9Ewsf7VOKh6nPQUKJ8HZ0Vqft5sYLYMX0pw.mp4", title: "Luxury Sandals Wholesale" },
+      { src: "AQMhvyRBUiaPkHHl4uRa0_BfwRSTaLZdNcXNI5q3ubooYzaikK0LYZc9D28k9XvS1W7ZT-ahwXYpKtopjMuz7LIJ59D6cqPJRw2Cjzo.mp4", title: "MelonyPine Parfait Business" },
+      { src: "AQNb26At5my-nO_uWIoMmgGDXHEK6MAjJPu6cw3gCOLGnjaKd2lJ8VZAGpLyr4hgrKiQnLU8pzqFUSuhr94yBwt6RwDAH2GuukLe8Xpiig.mp4", title: "Cyncel Cosmetics" },
+      { src: "179994.mp4", title: "Furniture Cleaning" },
+      { src: "179995.mp4", title: "Car Loading Service" }
+    ];
+    // ==================== END OF VIDEO LIST ====================
+
+    const appComments = [
+      { name: "Aisha Bello", comment: "OFUNDS is the best earning app I've used. Tasks are simple!" },
+      { name: "Chinedu Okoro", comment: "I cleared my rent by watching videos and completing tasks." },
+      { name: "Fatima Yusuf", comment: "Love the video tasks. Easy ₦500 per video." }
     ];
 
-    const testimonials = [
-      {name: "Aisha O.", email: "aisha@test.com", text: "Watched a few videos and got ₦2,500 instantly. Helped pay part of my debt!"},
-      {name: "Chukwudi M.", email: "chukwudi@test.com", text: "This app actually pays. Withdrew ₦15k last week."},
-      {name: "Fatima K.", email: "fatima@test.com", text: "Easy tasks. Love promoting these businesses."},
-      {name: "Emmanuel T.", email: "emmanuel@test.com", text: "Cleared my data debt in one day."},
-      {name: "Blessing A.", email: "blessing@test.com", text: "Reliable and fun way to earn extra cash."}
-    ];
+    function renderAppComments() {
+      const container = document.getElementById('app-comments');
+      container.innerHTML = '';
+      appComments.forEach(c => {
+        const div = document.createElement('div');
+        div.className = "bg-zinc-900 border border-zinc-700 rounded-3xl p-5";
+        div.innerHTML = `<p class="italic">"${c.comment}"</p><p class="text-yellow-400 text-sm mt-3">- ${c.name}</p>`;
+        container.appendChild(div);
+      });
+    }
 
-    function updateBalance() {
-      const display = document.getElementById('balance-display');
-      display.textContent = isBalanceVisible ? '₦' + balance.toLocaleString() : '••••••';
-      const perc = Math.min(Math.round((balance / MAX_BALANCE) * 100), 100);
-      document.getElementById('progress').style.width = perc + '%';
-      document.getElementById('percent').textContent = perc + '%';
+    // ... (rest of the script remains the same as previous version)
+
+    function updateProgressBar() {
+      const perc = Math.min((balance / MAX_BALANCE) * 100, 100);
+      document.getElementById('progress-bar').style.width = `${perc}%`;
+      document.getElementById('progress-text').textContent = `${Math.round(perc)}%`;
+    }
+
+    function updateBalanceDisplay() {
+      document.getElementById('balance').textContent = balance.toLocaleString('en-NG');
+      updateProgressBar();
     }
 
     function openTasksModal() {
@@ -180,29 +235,30 @@
     }
 
     function closeTasksModal() {
+      const video = document.getElementById('task-video');
+      if (video) video.pause();
       document.getElementById('tasks-modal').classList.add('hidden');
-      const vid = document.getElementById('task-video');
-      if (vid) vid.pause();
     }
 
     function playCurrentVideo() {
       const videoEl = document.getElementById('task-video');
-      const titleEl = document.getElementById('task-title');
+      const info = document.getElementById('task-info');
       const nextBtn = document.getElementById('next-btn');
 
-      const video = videos[currentVideoIndex % videos.length];
-      videoEl.src = video.src;           // Full absolute path
-      titleEl.innerHTML = `<strong>${video.title}</strong><br><span class="text-emerald-400 text-xs">Watch full video to earn ₦500</span>`;
+      const current = videos[currentVideoIndex % videos.length];
+      videoEl.src = current.src;
+      info.innerHTML = `<strong>Video \( {currentVideoIndex + 1}/ \){videos.length}</strong><br>${current.title}<br><span class="text-emerald-400">Watch full video to claim ₦500</span>`;
       nextBtn.classList.add('hidden');
-      videoEl.load(); // Important for new src
-      videoEl.play().catch(e => console.log("Autoplay prevented:", e));
+
+      videoEl.load();
+      videoEl.play().catch(() => {});
     }
 
     function videoEnded() {
       document.getElementById('next-btn').classList.remove('hidden');
       if (balance < MAX_BALANCE) {
         balance += 500;
-        updateBalance();
+        updateBalanceDisplay();
       }
     }
 
@@ -211,99 +267,79 @@
       playCurrentVideo();
     }
 
-    function handleLogin() {
+    function handleLogin() { /* same as before */ 
       const email = document.getElementById('login-email').value.trim();
-      const pass = document.getElementById('login-password').value.trim();
-      if (!email || !pass) return alert("Please enter email and password");
-
-      const saved = localStorage.getItem('ofunds_user');
-      if (saved) {
-        const user = JSON.parse(saved);
-        if (user.email === email && user.pass === pass) {
-          currentUser = user;
-          document.getElementById('auth-screen').classList.add('hidden');
-          document.getElementById('welcome-modal').classList.remove('hidden');
-          return;
-        }
+      const password = document.getElementById('login-password').value.trim();
+      if (!email || !password) return alert("Enter email & password");
+      const saved = localStorage.getItem("ofunds_user");
+      if (!saved) return alert("No account. Sign up first.");
+      const user = JSON.parse(saved);
+      if (user.email === email && user.password === password) {
+        currentUser = user;
+        document.getElementById('auth-screen').classList.add('hidden');
+        document.getElementById('welcome-modal').classList.remove('hidden');
+      } else {
+        alert("Invalid credentials");
       }
-      alert("Invalid credentials. Please sign up first or check your details.");
     }
 
-    function handleSignup() {
-      const name = document.getElementById('signup-name').value.trim();
+    function handleSignup() { /* same */ 
+      const firstname = document.getElementById('signup-firstname').value.trim();
       const email = document.getElementById('signup-email').value.trim();
-      const pass = document.getElementById('signup-password').value.trim();
-      if (!name || !email || !pass) return alert("Please fill all fields");
-
-      currentUser = {name, email, pass};
-      localStorage.setItem('ofunds_user', JSON.stringify(currentUser));
-      alert("Account created successfully! You can now login.");
-      switchTab(0); // Switch to login tab
+      const password = document.getElementById('signup-password').value.trim();
+      if (!firstname || !email || !password) return alert("Fill all fields");
+      currentUser = { firstname, email, password };
+      localStorage.setItem("ofunds_user", JSON.stringify(currentUser));
+      alert("Account created! Login now.");
+      switchTab(0);
     }
 
     function continueToDashboard() {
       document.getElementById('welcome-modal').classList.add('hidden');
       document.getElementById('dashboard').classList.remove('hidden');
-      updateBalance();
-      renderTestimonials();
+      document.getElementById('welcome-name').textContent = `Welcome, ${currentUser.firstname || 'User'}`;
+      updateBalanceDisplay();
+      renderAppComments();
     }
 
-    function renderTestimonials() {
-      const container = document.getElementById('testimonials');
-      container.innerHTML = '';
-      testimonials.forEach(t => {
-        const div = document.createElement('div');
-        div.className = "bg-zinc-900 p-5 rounded-3xl border border-zinc-700";
-        div.innerHTML = `<p class="italic text-zinc-300">"\( {t.text}"</p><p class="text-yellow-400 text-xs mt-3"> \){t.name} • ${t.email}</p>`;
-        container.appendChild(div);
-      });
-    }
-
-    function switchTab(n) {
-      document.getElementById('login-form').classList.toggle('hidden', n === 1);
-      document.getElementById('signup-form').classList.toggle('hidden', n === 0);
-      
-      // Highlight active tab
-      document.getElementById('login-tab').classList.toggle('bg-zinc-800', n === 0);
-      document.getElementById('signup-tab').classList.toggle('bg-zinc-800', n === 1);
+    function switchTab(tab) {
+      document.getElementById('login-form').classList.toggle('hidden', tab === 1);
+      document.getElementById('signup-form').classList.toggle('hidden', tab === 0);
+      document.getElementById('login-tab').classList.toggle('bg-zinc-800', tab === 0);
+      document.getElementById('signup-tab').classList.toggle('bg-zinc-800', tab === 1);
     }
 
     function togglePassword(id) {
-      const inp = document.getElementById(id);
-      const iconId = id.includes('login') ? 'login-eye' : 'signup-eye';
-      const icon = document.getElementById(iconId);
-      if (inp.type === 'password') {
-        inp.type = 'text';
+      const input = document.getElementById(id);
+      const icon = document.getElementById(id.includes('login') ? 'login-eye' : 'signup-eye');
+      if (input.type === "password") {
+        input.type = "text"; 
         icon.classList.replace('fa-eye', 'fa-eye-slash');
       } else {
-        inp.type = 'password';
+        input.type = "password"; 
         icon.classList.replace('fa-eye-slash', 'fa-eye');
       }
     }
 
-    function toggleBalance() {
-      isBalanceVisible = !isBalanceVisible;
-      updateBalance();
+    function toggleBalanceVisibility() {
+      isVisible = !isVisible;
+      const bal = document.getElementById('balance');
+      const icon = document.getElementById('eye-icon');
+      if (!isVisible) {
+        bal.textContent = "••••••";
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        updateBalanceDisplay();
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      }
     }
 
     function logout() {
-      if (confirm("Logout?")) {
-        localStorage.removeItem('ofunds_user');
-        location.reload();
-      }
+      if (confirm("Logout?")) location.reload();
     }
 
-    // Initialize
     window.onload = () => {
-      switchTab(0); // Default to login tab
-      
-      // Auto-login if user exists
-      const savedUser = localStorage.getItem('ofunds_user');
-      if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('welcome-modal').classList.remove('hidden');
-      }
+      switchTab(0);
     };
   </script>
 </body>
