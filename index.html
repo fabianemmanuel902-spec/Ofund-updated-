@@ -139,14 +139,22 @@
     let isBalanceVisible = true;
     let currentVideoIndex = 0;
 
+    // UPDATED VIDEO LIST with FULL PATHS from attachments folder
     const videos = [
-      {src: "AQP1w-b0tEWWzqt-y1HoyOJHGNuxLsLfmaT61oPyNY5AzlDsgNO5dn4woC4sVWYyGFfVhyQ9Ewsf7VOKh6nPQUKJ8HZ0Vqft5sYLYMX0pw.mp4", title: "Luxury Sandals Wholesale"},
-      {src: "AQMhvyRBUiaPkHHl4uRa0_BfwRSTaLZdNcXNI5q3ubooYzaikK0LYZc9D28k9XvS1W7ZT-ahwXYpKtopjMuz7LIJ59D6cqPJRw2Cjzo.mp4", title: "MelonyPine Parfait Business"},
-      {src: "AQNb26At5my-nO_uWIoMmgGDXHEK6MAjJPu6cw3gCOLGnjaKd2lJ8VZAGpLyr4hgrKiQnLU8pzqFUSuhr94yBwt6RwDAH2GuukLe8Xpiig.mp4", title: "Cyncel Cosmetics Wholesale"},
-      {src: "AQPx3ycxzZnaRADsZkmFfvGagSXmdmrxcQKO2PbqiDUcxPWxiEBpqemaQXW8_1SapQLRUjiBkXafEKPq8Xf3SGJ8HVnN2Zq1P6jytBBwcg.mp4", title: "Hakuna Human Hair Factory"},
-      {src: "AQP2bSG0Lf5sgLwL1oAnVOWKkvwQoo6ay-64M8ddAuwO4IqbySnYKI7BkjRJxK1ZstOiRJS5VNUxWVoV0X319kc1vJUTA8S6BdDUzx8M2A.mp4", title: "M.B Collection Fashion"},
-      {src: "AQO_GecNHRwk546dDFwcnijXpvnkmqm3pjIKoRCCWiwtnZovOQ5mi0jGDiWSfKr250xEmlF1q3aBqEAvoeJx9pTqeRTkZawufWt09OFnhA.mp4", title: "Rafiki - Shop China Pay in Naira"},
-      {src: "AQNU81d_QNBSiqSjKYrJ7KEg_ootMrf9T8Uo7Z7Fs7AYXrrcQQzirte36ZeCn1HSxrM5AWKlHdsJk4lZOadoTTquwXC3fhbiTUT_5ip8kg.mp4", title: "Factory Fan Products"}
+      {src: "/home/workdir/attachments/AQP1w-b0tEWWzqt-y1HoyOJHGNuxLsLfmaT61oPyNY5AzlDsgNO5dn4woC4sVWYyGFfVhyQ9Ewsf7VOKh6nPQUKJ8HZ0Vqft5sYLYMX0pw.mp4", title: "Luxury Sandals Wholesale"},
+      {src: "/home/workdir/attachments/AQMhvyRBUiaPkHHl4uRa0_BfwRSTaLZdNcXNI5q3ubooYzaikK0LYZc9D28k9XvS1W7ZT-ahwXYpKtopjMuz7LIJ59D6cqPJRw2Cjzo.mp4", title: "MelonyPine Parfait Business"},
+      {src: "/home/workdir/attachments/AQNb26At5my-nO_uWIoMmgGDXHEK6MAjJPu6cw3gCOLGnjaKd2lJ8VZAGpLyr4hgrKiQnLU8pzqFUSuhr94yBwt6RwDAH2GuukLe8Xpiig.mp4", title: "Cyncel Cosmetics Wholesale"},
+      {src: "/home/workdir/attachments/AQPx3ycxzZnaRADsZkmFfvGagSXmdmrxcQKO2PbqiDUcxPWxiEBpqemaQXW8_1SapQLRUjiBkXafEKPq8Xf3SGJ8HVnN2Zq1P6jytBBwcg.mp4", title: "Hakuna Human Hair Factory"},
+      {src: "/home/workdir/attachments/AQP2bSG0Lf5sgLwL1oAnVOWKkvwQoo6ay-64M8ddAuwO4IqbySnYKI7BkjRJxK1ZstOiRJS5VNUxWVoV0X319kc1vJUTA8S6BdDUzx8M2A.mp4", title: "M.B Collection Fashion"},
+      {src: "/home/workdir/attachments/AQO_GecNHRwk546dDFwcnijXpvnkmqm3pjIKoRCCWiwtnZovOQ5mi0jGDiWSfKr250xEmlF1q3aBqEAvoeJx9pTqeRTkZawufWt09OFnhA.mp4", title: "Rafiki - Shop China Pay in Naira"},
+      {src: "/home/workdir/attachments/AQNU81d_QNBSiqSjKYrJ7KEg_ootMrf9T8Uo7Z7Fs7AYXrrcQQzirte36ZeCn1HSxrM5AWKlHdsJk4lZOadoTTquwXC3fhbiTUT_5ip8kg.mp4", title: "Factory Fan Products"},
+      // NEW VIDEOS
+      {src: "/home/workdir/attachments/AQPJ7YjhdytnXy05yOpUYTYI2-tqxnSPRxHzT-M3ieQp7LEDk6sKrbGikyRxDTN5dkeltobQhRvoM1LwpeLXa8K4kXhn0q38TGFlAi2XWw.mp4", title: "Huawei Mate 30 Pro Demo"},
+      {src: "/home/workdir/attachments/AQMGxQGmKxwa5_YnBr2LvZANtIOe61zM_7jMn3wBXVCNoCzc4COBKQKilRwXQxq30MuJXcl5Ieb5Nl_73V9YH_kP6oQAMyojrdbCOLCEXA.mp4", title: "Custom Mattress Factory"},
+      {src: "/home/workdir/attachments/AQPCAtHZpE8Nq3VmfPoC-mxqNbswl_6FtxZmlAFxOqGjf462FXLNN5WR0ZLBRE2F0RQGWWfpRnDTjxYniWCyor4JmwTYNz5B6QH6jT-2Qw.mp4", title: "Ball Bearing Factory"},
+      {src: "/home/workdir/attachments/AQPb8t3wHM9ERXX6ZDW_VvcAi0IMHQA6tK4S4tGaFgpZ2o4qgstMphyWhPLj-TLMFyY__yArGOFDI2UarRWsCjoDSrTrc8sWc1kXBvot6A.mp4", title: "Foldable Smartphones"},
+      {src: "/home/workdir/attachments/AQNYeOghxFubc8RDtrTKHwQ7rH7bmXdeTPEcyF8klNOom5Dr-E9xYHY6tYrLLuQIDokfLaTyEenPPnpQVVm5-c2-z00bN6azZRaB_Onreg.mp4", title: "Buy Water Easy Delivery"},
+      {src: "/home/workdir/attachments/AQP44SLDIgTTkzPL1bG7UaB4qSvJy4oq_U4dilpetsHroV4zOaFsSbG-KSy2F1NRk0n9S-XI8cXClkXAc7sO7xRUYRNQZwP5fsDiAoN_0g.mp4", title: "Dr Davey Lotion Wholesale"}
     ];
 
     const testimonials = [
@@ -158,7 +166,8 @@
     ];
 
     function updateBalance() {
-      document.getElementById('balance-display').textContent = isBalanceVisible ? '₦' + balance.toLocaleString() : '••••••';
+      const display = document.getElementById('balance-display');
+      display.textContent = isBalanceVisible ? '₦' + balance.toLocaleString() : '••••••';
       const perc = Math.min(Math.round((balance / MAX_BALANCE) * 100), 100);
       document.getElementById('progress').style.width = perc + '%';
       document.getElementById('percent').textContent = perc + '%';
@@ -182,10 +191,11 @@
       const nextBtn = document.getElementById('next-btn');
 
       const video = videos[currentVideoIndex % videos.length];
-      videoEl.src = video.src;
+      videoEl.src = video.src;           // Full absolute path
       titleEl.innerHTML = `<strong>${video.title}</strong><br><span class="text-emerald-400 text-xs">Watch full video to earn ₦500</span>`;
       nextBtn.classList.add('hidden');
-      videoEl.play().catch(() => {});
+      videoEl.load(); // Important for new src
+      videoEl.play().catch(e => console.log("Autoplay prevented:", e));
     }
 
     function videoEnded() {
@@ -204,29 +214,31 @@
     function handleLogin() {
       const email = document.getElementById('login-email').value.trim();
       const pass = document.getElementById('login-password').value.trim();
-      if (!email || !pass) return alert("Enter credentials");
+      if (!email || !pass) return alert("Please enter email and password");
+
       const saved = localStorage.getItem('ofunds_user');
       if (saved) {
         const user = JSON.parse(saved);
-        if (user.email === email) {
+        if (user.email === email && user.pass === pass) {
           currentUser = user;
           document.getElementById('auth-screen').classList.add('hidden');
           document.getElementById('welcome-modal').classList.remove('hidden');
           return;
         }
       }
-      alert("Account not found. Sign up first.");
+      alert("Invalid credentials. Please sign up first or check your details.");
     }
 
     function handleSignup() {
       const name = document.getElementById('signup-name').value.trim();
       const email = document.getElementById('signup-email').value.trim();
       const pass = document.getElementById('signup-password').value.trim();
-      if (!name || !email || !pass) return alert("Fill all fields");
+      if (!name || !email || !pass) return alert("Please fill all fields");
+
       currentUser = {name, email, pass};
       localStorage.setItem('ofunds_user', JSON.stringify(currentUser));
-      alert("Account created successfully!");
-      switchTab(0);
+      alert("Account created successfully! You can now login.");
+      switchTab(0); // Switch to login tab
     }
 
     function continueToDashboard() {
@@ -250,11 +262,16 @@
     function switchTab(n) {
       document.getElementById('login-form').classList.toggle('hidden', n === 1);
       document.getElementById('signup-form').classList.toggle('hidden', n === 0);
+      
+      // Highlight active tab
+      document.getElementById('login-tab').classList.toggle('bg-zinc-800', n === 0);
+      document.getElementById('signup-tab').classList.toggle('bg-zinc-800', n === 1);
     }
 
     function togglePassword(id) {
       const inp = document.getElementById(id);
-      const icon = document.getElementById(id.includes('login') ? 'login-eye' : 'signup-eye');
+      const iconId = id.includes('login') ? 'login-eye' : 'signup-eye';
+      const icon = document.getElementById(iconId);
       if (inp.type === 'password') {
         inp.type = 'text';
         icon.classList.replace('fa-eye', 'fa-eye-slash');
@@ -270,18 +287,24 @@
     }
 
     function logout() {
-      if (confirm("Logout?")) location.reload();
+      if (confirm("Logout?")) {
+        localStorage.removeItem('ofunds_user');
+        location.reload();
+      }
     }
 
     // Initialize
     window.onload = () => {
+      switchTab(0); // Default to login tab
+      
       // Auto-login if user exists
-      if (localStorage.getItem('ofunds_user')) {
-        currentUser = JSON.parse(localStorage.getItem('ofunds_user'));
+      const savedUser = localStorage.getItem('ofunds_user');
+      if (savedUser) {
+        currentUser = JSON.parse(savedUser);
         document.getElementById('auth-screen').classList.add('hidden');
         document.getElementById('welcome-modal').classList.remove('hidden');
       }
     };
   </script>
 </body>
-          </html>
+</html>
