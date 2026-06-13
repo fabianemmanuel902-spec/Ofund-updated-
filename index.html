@@ -112,6 +112,116 @@
     </div>
   </div>
 
+  <!-- AIRTIME & DATA MODAL -->
+  <div id="airtime-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
+    <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-6">
+      <div class="flex justify-between mb-6">
+        <h3 class="font-bold text-xl">Buy Airtime & Data</h3>
+        <button onclick="closeAirtimeModal()" class="text-2xl text-zinc-400">✕</button>
+      </div>
+      
+      <div class="space-y-6">
+        <div>
+          <label class="block text-xs text-zinc-400 mb-2">Service Type</label>
+          <div class="grid grid-cols-2 gap-3">
+            <button onclick="selectService(0)" id="btn-airtime" class="service-btn py-4 rounded-2xl border-2 border-yellow-400 bg-zinc-800 text-white font-medium">Airtime</button>
+            <button onclick="selectService(1)" id="btn-data" class="service-btn py-4 rounded-2xl border border-zinc-700 hover:border-zinc-500">Data</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-zinc-400 mb-2">Network</label>
+          <select id="network-select" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400">
+            <option value="MTN">MTN</option>
+            <option value="Airtel">Airtel</option>
+            <option value="Glo">Glo</option>
+            <option value="9mobile">9mobile</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs text-zinc-400 mb-2">Phone Number</label>
+          <input type="tel" id="phone-number" placeholder="08012345678" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+        </div>
+
+        <div id="amount-group">
+          <label class="block text-xs text-zinc-400 mb-2">Amount (₦)</label>
+          <input type="number" id="airtime-amount" placeholder="500" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+        </div>
+
+        <div id="data-plan-group" class="hidden">
+          <label class="block text-xs text-zinc-400 mb-2">Data Plan</label>
+          <select id="data-plan" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400">
+            <option value="500">1GB - ₦500</option>
+            <option value="1000">2GB - ₦1000</option>
+            <option value="2000">4GB - ₦2000</option>
+            <option value="5000">10GB - ₦5000</option>
+          </select>
+        </div>
+
+        <button onclick="buyAirtimeOrData()" class="w-full bg-emerald-500 hover:bg-emerald-600 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <span id="buy-btn-text">BUY AIRTIME</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAVEL BOOKING MODAL -->
+  <div id="travel-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
+    <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-6">
+      <div class="flex justify-between mb-6">
+        <h3 class="font-bold text-xl">Book Flights & Hotels</h3>
+        <button onclick="closeTravelModal()" class="text-2xl text-zinc-400">✕</button>
+      </div>
+      
+      <div class="flex border-b border-zinc-700 mb-6">
+        <button onclick="switchTravelTab(0)" id="flight-tab" class="flex-1 pb-3 border-b-2 border-yellow-400 font-semibold">Flights</button>
+        <button onclick="switchTravelTab(1)" id="hotel-tab" class="flex-1 pb-3 text-zinc-400">Hotels</button>
+      </div>
+
+      <!-- Flight Form -->
+      <div id="flight-form">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-zinc-400 mb-2">From</label>
+            <input type="text" id="flight-from" value="Lagos (LOS)" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400">
+          </div>
+          <div>
+            <label class="block text-xs text-zinc-400 mb-2">To</label>
+            <input type="text" id="flight-to" value="Abuja (ABV)" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400">
+          </div>
+        </div>
+        <div class="mt-4">
+          <label class="block text-xs text-zinc-400 mb-2">Travel Date</label>
+          <input type="date" id="flight-date" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400">
+        </div>
+        <button onclick="bookFlight()" class="mt-6 w-full bg-sky-500 hover:bg-sky-600 py-5 rounded-2xl font-bold text-lg">SEARCH FLIGHTS & BOOK</button>
+      </div>
+
+      <!-- Hotel Form -->
+      <div id="hotel-form" class="hidden">
+        <div>
+          <label class="block text-xs text-zinc-400 mb-2">Destination City</label>
+          <input type="text" id="hotel-city" value="Abuja" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400">
+        </div>
+        <div class="grid grid-cols-2 gap-4 mt-4">
+          <div>
+            <label class="block text-xs text-zinc-400 mb-2">Check-in</label>
+            <input type="date" id="checkin" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400">
+          </div>
+          <div>
+            <label class="block text-xs text-zinc-400 mb-2">Check-out</label>
+            <input type="date" id="checkout" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400">
+          </div>
+        </div>
+        <button onclick="bookHotel()" class="mt-6 w-full bg-rose-500 hover:bg-rose-600 py-5 rounded-2xl font-bold text-lg">SEARCH HOTELS & BOOK</button>
+      </div>
+
+      <div id="booking-result" class="hidden mt-6 p-4 bg-zinc-800 rounded-2xl text-center"></div>
+    </div>
+  </div>
+
   <!-- DASHBOARD -->
   <div id="dashboard" class="hidden min-h-screen pb-12">
     <nav class="bg-zinc-900 px-5 py-4 flex justify-between items-center border-b border-zinc-800">
@@ -154,9 +264,21 @@
           </div>
         </div>
 
-        <button onclick="openTasksModal()" class="mt-6 w-full bg-emerald-500 py-6 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-emerald-600 transition">
-          <i class="fa-solid fa-play"></i>
-          <span>EARN LIVE - WATCH VIDEOS</span>
+        <div class="grid grid-cols-2 gap-4 mt-6">
+          <button onclick="openTasksModal()" class="bg-emerald-500 py-6 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-emerald-600 transition">
+            <i class="fa-solid fa-play"></i>
+            <span class="text-sm">WATCH VIDEOS</span>
+          </button>
+          
+          <button onclick="openAirtimeModal()" class="bg-violet-500 py-6 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-violet-600 transition">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <span class="text-sm">BUY AIRTIME/DATA</span>
+          </button>
+        </div>
+
+        <button onclick="openTravelModal()" class="mt-4 w-full bg-orange-500 py-6 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-orange-600 transition">
+          <i class="fa-solid fa-plane"></i>
+          <span>BOOK FLIGHT / HOTEL</span>
         </button>
 
         <button onclick="window.open('https://ofundwithdraw.netlify.app/', '_blank')" class="mt-4 w-full bg-sky-500 py-5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-sky-600 transition">
@@ -178,10 +300,10 @@
     const MAX_BALANCE = 86000;
     let isVisible = true;
     let currentVideoIndex = 0;
+    let currentService = 0; // 0 = airtime, 1 = data
+    let currentTravelTab = 0;
 
     // ==================== EASY TO ADD VIDEOS ====================
-    
-  
     const videos = [
       { src: "179995.mp4", title: "Car Loading Service" },
       { src: "179994.mp4", title: "Furniture Cleaning" },
@@ -200,7 +322,6 @@
       { src: "b13.mp4", title: "Business Promo 13" },
       { src: "b14.mp4", title: "Business Promo 14" }
     ];
-    // ==================== END OF VIDEO LIST ====================
 
     const appComments = [
       { name: "Aisha Bello", comment: "OFUNDS is the best earning app I've used. Tasks are simple!" },
@@ -219,8 +340,6 @@
       });
     }
 
-    // ... (rest of the script remains the same as previous version)
-
     function updateProgressBar() {
       const perc = Math.min((balance / MAX_BALANCE) * 100, 100);
       document.getElementById('progress-bar').style.width = `${perc}%`;
@@ -232,6 +351,7 @@
       updateProgressBar();
     }
 
+    // Video functions (unchanged)
     function openTasksModal() {
       currentVideoIndex = 0;
       document.getElementById('tasks-modal').classList.remove('hidden');
@@ -271,7 +391,115 @@
       playCurrentVideo();
     }
 
-    function handleLogin() { /* same as before */ 
+    // Airtime & Data
+    function openAirtimeModal() {
+      document.getElementById('airtime-modal').classList.remove('hidden');
+      selectService(0);
+    }
+
+    function closeAirtimeModal() {
+      document.getElementById('airtime-modal').classList.add('hidden');
+    }
+function selectService(type) {
+      currentService = type;
+      document.getElementById('btn-airtime').classList.toggle('border-yellow-400', type === 0);
+      document.getElementById('btn-airtime').classList.toggle('bg-zinc-800', type === 0);
+      document.getElementById('btn-data').classList.toggle('border-yellow-400', type === 1);
+      document.getElementById('btn-data').classList.toggle('bg-zinc-800', type === 1);
+      
+      document.getElementById('amount-group').classList.toggle('hidden', type === 1);
+      document.getElementById('data-plan-group').classList.toggle('hidden', type === 0);
+      document.getElementById('buy-btn-text').textContent = type === 0 ? 'BUY AIRTIME' : 'BUY DATA';
+    }
+
+    function buyAirtimeOrData() {
+      const phone = document.getElementById('phone-number').value.trim();
+      if (!phone) return alert("Please enter phone number");
+
+      let amount = 0;
+      if (currentService === 0) {
+        amount = parseInt(document.getElementById('airtime-amount').value) || 0;
+      } else {
+        amount = parseInt(document.getElementById('data-plan').value) || 0;
+      }
+
+      if (amount < 100) return alert("Minimum amount is ₦100");
+
+      if (balance < amount) {
+        return alert("Insufficient balance!");
+      }
+
+      // Mock API call
+      setTimeout(() => {
+        balance -= amount;
+        updateBalanceDisplay();
+        alert(`✅ Transaction successful!\n\( {currentService === 0 ? 'Airtime' : 'Data'} of ₦ \){amount} has been sent to ${phone}`);
+        closeAirtimeModal();
+      }, 800);
+    }
+
+    // Travel Booking
+    function openTravelModal() {
+      document.getElementById('travel-modal').classList.remove('hidden');
+      switchTravelTab(0);
+    }
+
+    function closeTravelModal() {
+      document.getElementById('travel-modal').classList.add('hidden');
+      document.getElementById('booking-result').classList.add('hidden');
+    }
+
+    function switchTravelTab(tab) {
+      currentTravelTab = tab;
+      document.getElementById('flight-form').classList.toggle('hidden', tab === 1);
+      document.getElementById('hotel-form').classList.toggle('hidden', tab === 0);
+      document.getElementById('flight-tab').classList.toggle('border-b-2', tab === 0);
+      document.getElementById('flight-tab').classList.toggle('border-yellow-400', tab === 0);
+      document.getElementById('hotel-tab').classList.toggle('border-b-2', tab === 1);
+      document.getElementById('hotel-tab').classList.toggle('border-yellow-400', tab === 1);
+    }
+
+    function bookFlight() {
+      const from = document.getElementById('flight-from').value;
+      const to = document.getElementById('flight-to').value;
+      const amount = Math.floor(Math.random() * 45000) + 15000;
+
+      if (balance < amount) return alert("Insufficient balance for this booking");
+
+      // Mock API
+      setTimeout(() => {
+        balance -= amount;
+        updateBalanceDisplay();
+        showBookingResult(`Flight from ${from} to ${to} booked successfully!`, amount);
+      }, 900);
+    }
+
+    function bookHotel() {
+      const city = document.getElementById('hotel-city').value;
+      const amount = Math.floor(Math.random() * 35000) + 8000;
+
+      if (balance < amount) return alert("Insufficient balance for this booking");
+
+      // Mock API
+      setTimeout(() => {
+        balance -= amount;
+        updateBalanceDisplay();
+        showBookingResult(`Hotel in ${city} booked successfully!`, amount);
+      }, 900);
+    }
+
+    function showBookingResult(message, amount) {
+      const resultDiv = document.getElementById('booking-result');
+      resultDiv.innerHTML = `
+        <div class="text-emerald-400 text-xl mb-2">✅ Booking Confirmed</div>
+        <p class="text-zinc-300">${message}</p>
+        <p class="mt-3 text-yellow-400 font-bold">₦${amount.toLocaleString('en-NG')} debited</p>
+      `;
+      resultDiv.classList.remove('hidden');
+    }
+
+    // Auth functions
+    function handleLogin() {
       const email = document.getElementById('login-email').value.trim();
       const password = document.getElementById('login-password').value.trim();
       if (!email || !password) return alert("Enter email & password");
@@ -287,7 +515,7 @@
       }
     }
 
-    function handleSignup() { /* same */ 
+    function handleSignup() {
       const firstname = document.getElementById('signup-firstname').value.trim();
       const email = document.getElementById('signup-email').value.trim();
       const password = document.getElementById('signup-password').value.trim();
@@ -348,3 +576,4 @@
   </script>
 </body>
 </html>
+    
