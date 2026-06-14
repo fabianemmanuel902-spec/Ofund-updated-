@@ -4,8 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OFUNDS - Earn Live</title>
+  
+  <!-- 🔥 PWA & Home Screen Icon Support -->
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#eab308">
+  <meta name="application-name" content="OFUNDS">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
   <style>
     body { font-family: 'Inter', sans-serif; font-size: 0.9rem; }
     .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
@@ -179,13 +189,9 @@
     let isVisible = true;
     let currentVideoIndex = 0;
 
-    // ==================== EASY TO ADD VIDEOS ====================
-    
-  
     const videos = [
       { src: "179995.mp4", title: "Car Loading Service" },
       { src: "179994.mp4", title: "Furniture Cleaning" },
-      // Previous b1 to b14 (if you still want them)
       { src: "b1.mp4", title: "Business Promo 1" },
       { src: "b2.mp4", title: "Business Promo 2" },
       { src: "b3.mp4", title: "Business Promo 3" },
@@ -200,8 +206,6 @@
       { src: "b12.mp4", title: "Business Promo 12" },
       { src: "b13.mp4", title: "Business Promo 13" },
       { src: "b14.mp4", title: "Business Promo 14" },
-      
-      // === NEW VIDEOS b15 to b56 ===
       { src: "b15.mp4", title: "Business Promo 15" },
       { src: "b16.mp4", title: "Business Promo 16" },
       { src: "b17.mp4", title: "Business Promo 17" },
@@ -245,13 +249,25 @@
       { src: "b55.mp4", title: "Business Promo 55" },
       { src: "b56.mp4", title: "Business Promo 56" }
     ];
-    // ==================== END OF VIDEO LIST ====================
 
     const appComments = [
       { name: "Aisha Bello", comment: "OFUNDS is the best earning app I've used. Tasks are simple!" },
       { name: "Chinedu Okoro", comment: "I cleared my rent by watching videos and completing tasks." },
       { name: "Fatima Yusuf", comment: "Love the video tasks. Easy ₦500 per video." }
     ];
+
+    function saveBalance() {
+      if (currentUser) {
+        localStorage.setItem(`balance_${currentUser.email}`, balance);
+      }
+    }
+
+    function loadBalance() {
+      if (currentUser) {
+        const saved = localStorage.getItem(`balance_${currentUser.email}`);
+        balance = saved ? parseInt(saved) : 0;
+      }
+    }
 
     function renderAppComments() {
       const container = document.getElementById('app-comments');
@@ -263,8 +279,6 @@
         container.appendChild(div);
       });
     }
-
-    // ... (rest of the script remains the same as previous version)
 
     function updateProgressBar() {
       const perc = Math.min((balance / MAX_BALANCE) * 100, 100);
@@ -308,6 +322,7 @@
       if (balance < MAX_BALANCE) {
         balance += 500;
         updateBalanceDisplay();
+        saveBalance();
       }
     }
 
@@ -316,15 +331,18 @@
       playCurrentVideo();
     }
 
-    function handleLogin() { /* same as before */ 
+    function handleLogin() {
       const email = document.getElementById('login-email').value.trim();
       const password = document.getElementById('login-password').value.trim();
       if (!email || !password) return alert("Enter email & password");
+
       const saved = localStorage.getItem("ofunds_user");
       if (!saved) return alert("No account. Sign up first.");
+
       const user = JSON.parse(saved);
       if (user.email === email && user.password === password) {
         currentUser = user;
+        loadBalance();
         document.getElementById('auth-screen').classList.add('hidden');
         document.getElementById('welcome-modal').classList.remove('hidden');
       } else {
@@ -332,13 +350,16 @@
       }
     }
 
-    function handleSignup() { /* same */ 
+    function handleSignup() {
       const firstname = document.getElementById('signup-firstname').value.trim();
       const email = document.getElementById('signup-email').value.trim();
       const password = document.getElementById('signup-password').value.trim();
       if (!firstname || !email || !password) return alert("Fill all fields");
+
       currentUser = { firstname, email, password };
       localStorage.setItem("ofunds_user", JSON.stringify(currentUser));
+      balance = 0;
+      saveBalance();
       alert("Account created! Login now.");
       switchTab(0);
     }
@@ -384,7 +405,10 @@
     }
 
     function logout() {
-      if (confirm("Logout?")) location.reload();
+      if (confirm("Logout?")) {
+        saveBalance();
+        location.reload();
+      }
     }
 
     window.onload = () => {
@@ -392,4 +416,4 @@
     };
   </script>
 </body>
-</html>
+  </html>
