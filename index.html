@@ -104,7 +104,7 @@
     </div>
   </div>
 
-  <!-- TASKS MODAL -->
+  <!-- TASKS MODAL (Videos) -->
   <div id="tasks-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
     <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-6">
       <div class="flex justify-between mb-4">
@@ -118,6 +118,23 @@
       <div class="flex gap-3 mt-6">
         <button onclick="closeTasksModal()" class="flex-1 py-4 border border-zinc-600 rounded-2xl">CLOSE</button>
         <button onclick="nextVideo()" id="next-btn" class="flex-1 py-4 bg-yellow-400 text-zinc-900 rounded-2xl font-bold hidden">NEXT VIDEO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW: VISIT PAGES MODAL -->
+  <div id="visit-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 overflow-auto">
+    <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-6 max-h-[90vh] flex flex-col">
+      <div class="flex justify-between mb-4">
+        <h3 class="font-bold text-xl">Visit Business Pages & Earn</h3>
+        <button onclick="closeVisitModal()" class="text-2xl text-zinc-400">✕</button>
+      </div>
+      <p class="text-zinc-400 text-sm mb-4">Like, Follow & Engage with each page. Earn ₦500 per page.</p>
+      
+      <div id="pages-list" class="flex-1 overflow-auto space-y-3 pr-2"></div>
+
+      <div class="mt-6 text-center text-xs text-zinc-500">
+        <p>Click a card to open the page, then mark as completed after engaging.</p>
       </div>
     </div>
   </div>
@@ -138,7 +155,7 @@
 
     <div class="p-5 max-w-5xl mx-auto">
       <h2 id="welcome-name" class="text-2xl font-bold">Welcome back</h2>
-      <p class="text-zinc-400 text-sm">Watch videos to earn ₦500 each</p>
+      <p class="text-zinc-400 text-sm">Watch videos & visit pages to earn ₦500 each</p>
 
       <div class="mt-6 bg-gradient-to-br from-zinc-900 to-zinc-800 border border-yellow-400/30 rounded-3xl p-6">
         <div class="flex justify-between items-start">
@@ -164,10 +181,17 @@
           </div>
         </div>
 
-        <button onclick="openTasksModal()" class="mt-6 w-full bg-emerald-500 py-6 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-emerald-600 transition">
-          <i class="fa-solid fa-play"></i>
-          <span>EARN LIVE - WATCH VIDEOS</span>
-        </button>
+        <div class="grid grid-cols-2 gap-4 mt-6">
+          <button onclick="openTasksModal()" class="bg-emerald-500 py-6 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-emerald-600 transition">
+            <i class="fa-solid fa-play"></i>
+            <span class="text-sm">WATCH VIDEOS</span>
+          </button>
+
+          <button onclick="openVisitModal()" class="bg-violet-500 py-6 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-violet-600 transition">
+            <i class="fa-solid fa-globe"></i>
+            <span class="text-sm">VISIT FB PAGES</span>
+          </button>
+        </div>
 
         <button onclick="window.open('https://ofundwithdraw.netlify.app/', '_blank')" class="mt-4 w-full bg-sky-500 py-5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-sky-600 transition">
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -250,6 +274,42 @@
       { src: "b56.mp4", title: "Business Promo 56" }
     ];
 
+    // New: Facebook Business Pages (30 entries)
+    let fbPages = [
+      { id: 1, name: "Luxury Cars NG", url: "https://facebook.com/luxurycarsng", desc: "Premium vehicle sales" },
+      { id: 2, name: "Clean Homes NG", url: "https://facebook.com/cleanhomesng", desc: "Professional cleaning services" },
+      { id: 3, name: "Fashion Hub Lagos", url: "https://facebook.com/fashionhublagos", desc: "Trendy clothing & accessories" },
+      { id: 4, name: "Tech Gadgets Africa", url: "https://facebook.com/techgadgetsng", desc: "Latest smartphones & gadgets" },
+      { id: 5, name: "Foodies Delight NG", url: "https://facebook.com/foodiesdelightng", desc: "Restaurant & food delivery" },
+      { id: 6, name: "Fitness First Abuja", url: "https://facebook.com/fitnessfirstabj", desc: "Gym & wellness programs" },
+      { id: 7, name: "Real Estate NG", url: "https://facebook.com/realestatenigeria", desc: "Property listings & sales" },
+      { id: 8, name: "Beauty Lounge NG", url: "https://facebook.com/beautyloungeng", desc: "Makeup & skincare" },
+      { id: 9, name: "EduSuccess Academy", url: "https://facebook.com/edusuccessng", desc: "Online courses & tutoring" },
+      { id: 10, name: "Travel Vibes NG", url: "https://facebook.com/travelvibesng", desc: "Tour packages & adventures" },
+      { id: 11, name: "Agro Farms NG", url: "https://facebook.com/agrofarmsng", desc: "Fresh farm produce" },
+      { id: 12, name: "Auto Repair Pros", url: "https://facebook.com/autorepairng", desc: "Vehicle maintenance" },
+      { id: 13, name: "Event Planners NG", url: "https://facebook.com/eventplannersng", desc: "Weddings & corporate events" },
+      { id: 14, name: "Music Studio NG", url: "https://facebook.com/musicstudiong", desc: "Recording & artist promo" },
+      { id: 15, name: "Home Decor NG", url: "https://facebook.com/homedecorng", desc: "Furniture & interior design" },
+      { id: 16, name: "Solar Energy NG", url: "https://facebook.com/solarenergng", desc: "Renewable energy solutions" },
+      { id: 17, name: "Book Club Nigeria", url: "https://facebook.com/bookclubng", desc: "Reading & literature" },
+      { id: 18, name: "Pet Care NG", url: "https://facebook.com/petcareng", desc: "Pet grooming & supplies" },
+      { id: 19, name: "Sports Arena NG", url: "https://facebook.com/sportsarenang", desc: "Football & sports gear" },
+      { id: 20, name: "Mobile Money NG", url: "https://facebook.com/mobilemoneyng", desc: "Fintech & payments" },
+      { id: 21, name: "Art Gallery NG", url: "https://facebook.com/artgalleryng", desc: "Nigerian artists" },
+      { id: 22, name: "Health & Wellness", url: "https://facebook.com/healthwellnessng", desc: "Natural supplements" },
+      { id: 23, name: "Logistics Hub NG", url: "https://facebook.com/logisticshubng", desc: "Delivery services" },
+      { id: 24, name: "Photography NG", url: "https://facebook.com/photographynig", desc: "Professional shoots" },
+      { id: 25, name: "Language School", url: "https://facebook.com/languageschoolng", desc: "French, Spanish & more" },
+      { id: 26, name: "Crypto Traders NG", url: "https://facebook.com/cryptotradersng", desc: "Bitcoin & crypto news" },
+      { id: 27, name: "Wedding Planners", url: "https://facebook.com/weddingplannersng", desc: "Dream weddings" },
+      { id: 28, name: "Electric Bikes NG", url: "https://facebook.com/electricbikesng", desc: "Eco-friendly transport" },
+      { id: 29, name: "Coffee Shops NG", url: "https://facebook.com/coffeeshopsng", desc: "Cafes & roasters" },
+      { id: 30, name: "Startup Nigeria", url: "https://facebook.com/startupnigeria", desc: "Entrepreneur community" }
+    ];
+
+    let completedPages = new Set(); // Track completed page IDs per user
+
     const appComments = [
       { name: "Aisha Bello", comment: "OFUNDS is the best earning app I've used. Tasks are simple!" },
       { name: "Chinedu Okoro", comment: "I cleared my rent by watching videos and completing tasks." },
@@ -310,7 +370,7 @@
 
       const current = videos[currentVideoIndex % videos.length];
       videoEl.src = current.src;
-      info.innerHTML = `<strong>Video \( {currentVideoIndex + 1}/ \){videos.length}</strong><br>${current.title}<br><span class="text-emerald-400">Watch full video to claim ₦500</span>`;
+      info.innerHTML = `<strong>Video ${currentVideoIndex + 1}/${videos.length}</strong><br>${current.title}<br><span class="text-emerald-400">Watch full video to claim ₦500</span>`;
       nextBtn.classList.add('hidden');
 
       videoEl.load();
@@ -331,6 +391,92 @@
       playCurrentVideo();
     }
 
+    // New functions for Visit Pages
+    function openVisitModal() {
+      document.getElementById('visit-modal').classList.remove('hidden');
+      renderPagesList();
+    }
+
+    function closeVisitModal() {
+      document.getElementById('visit-modal').classList.add('hidden');
+    }
+
+    function renderPagesList() {
+      const container = document.getElementById('pages-list');
+      container.innerHTML = '';
+
+      fbPages.forEach(page => {
+        const isCompleted = completedPages.has(page.id);
+        
+        const card = document.createElement('div');
+        card.className = `p-5 rounded-3xl border ${isCompleted ? 'border-emerald-500 bg-emerald-900/30' : 'border-zinc-700 bg-zinc-800'} transition-all`;
+        
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div>
+              <h4 class="font-semibold text-lg">${page.name}</h4>
+              <p class="text-zinc-400 text-sm">${page.desc}</p>
+            </div>
+            ${isCompleted ? 
+              `<div class="text-emerald-400 text-xl"><i class="fa-solid fa-check-circle"></i></div>` : 
+              ''}
+          </div>
+          
+          <div class="mt-4 flex gap-3">
+            <button onclick="visitPage(${page.id}); event.stopImmediatePropagation();" 
+                    class="flex-1 bg-zinc-700 hover:bg-zinc-600 py-3 rounded-2xl text-sm font-medium">
+              <i class="fa-solid fa-external-link-alt mr-1"></i> OPEN PAGE
+            </button>
+            ${!isCompleted ? `
+            <button onclick="completePage(${page.id}); event.stopImmediatePropagation();" 
+                    class="flex-1 bg-yellow-400 hover:bg-yellow-300 text-zinc-900 py-3 rounded-2xl text-sm font-bold">
+              MARK COMPLETE (+₦500)
+            </button>` : ''}
+          </div>
+        `;
+        
+        container.appendChild(card);
+      });
+    }
+
+    function visitPage(id) {
+      const page = fbPages.find(p => p.id === id);
+      if (page) {
+        window.open(page.url, '_blank');
+      }
+    }
+
+    function completePage(id) {
+      if (completedPages.has(id)) return;
+      
+      completedPages.add(id);
+      
+      if (balance < MAX_BALANCE) {
+        balance += 500;
+        updateBalanceDisplay();
+        saveBalance();
+      }
+      
+      // Re-render the list
+      renderPagesList();
+      
+      // Optional toast
+      showToast("✅ ₦500 added! Keep engaging.");
+    }
+
+    function showToast(msg) {
+      const toast = document.createElement('div');
+      toast.className = "fixed bottom-6 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-6 py-3 rounded-3xl text-sm shadow-xl z-[100]";
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.transition = "all 0.3s";
+        toast.style.opacity = "0";
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
     function handleLogin() {
       const email = document.getElementById('login-email').value.trim();
       const password = document.getElementById('login-password').value.trim();
@@ -343,6 +489,7 @@
       if (user.email === email && user.password === password) {
         currentUser = user;
         loadBalance();
+        loadCompletedPages();
         document.getElementById('auth-screen').classList.add('hidden');
         document.getElementById('welcome-modal').classList.remove('hidden');
       } else {
@@ -359,9 +506,25 @@
       currentUser = { firstname, email, password };
       localStorage.setItem("ofunds_user", JSON.stringify(currentUser));
       balance = 0;
+      completedPages.clear();
       saveBalance();
+      saveCompletedPages();
       alert("Account created! Login now.");
       switchTab(0);
+    }
+
+    // Persist completed pages
+    function saveCompletedPages() {
+      if (currentUser) {
+        localStorage.setItem(`completed_pages_${currentUser.email}`, JSON.stringify(Array.from(completedPages)));
+      }
+    }
+
+    function loadCompletedPages() {
+      if (currentUser) {
+        const saved = localStorage.getItem(`completed_pages_${currentUser.email}`);
+        completedPages = saved ? new Set(JSON.parse(saved)) : new Set();
+      }
     }
 
     function continueToDashboard() {
@@ -407,6 +570,7 @@
     function logout() {
       if (confirm("Logout?")) {
         saveBalance();
+        saveCompletedPages();
         location.reload();
       }
     }
