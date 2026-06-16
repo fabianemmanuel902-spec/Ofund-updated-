@@ -77,8 +77,19 @@
   <div id="welcome-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
     <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-8 text-center">
       <h2 class="text-3xl font-black mb-6">Welcome to OFUNDS!</h2>
-      <p class="text-zinc-300 mb-8">Promote businesses by watching videos and engaging on social media.<br><strong>Earn ₦2,000 per task.</strong></p>
-      <button onclick="continueToDashboard()" class="w-full bg-yellow-400 text-zinc-900 font-bold py-5 rounded-2xl text-lg">CONTINUE TO DASHBOARD</button>
+      <p class="text-zinc-300 mb-6">This app is designed for users to promote people's businesses and get paid by watching videos, going to business social media pages, liking, commenting.</p>
+      <p class="text-emerald-400 font-bold mb-8">Then get paid ₦2,000 per tasks</p>
+      
+      <div class="bg-zinc-800 rounded-2xl p-5 text-left text-sm mb-8">
+        <h3 class="font-semibold text-yellow-400 mb-3">How You Earn</h3>
+        <ul class="space-y-3 text-zinc-300">
+          <li class="flex gap-3">• Watch promotional videos</li>
+          <li class="flex gap-3">• Visit business pages</li>
+          <li class="flex gap-3">• Like, comment & share</li>
+        </ul>
+      </div>
+      
+      <button onclick="continueToDashboard()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-5 rounded-2xl text-lg">CONTINUE TO DASHBOARD</button>
     </div>
   </div>
 
@@ -86,7 +97,7 @@
   <div id="tasks-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
     <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-6">
       <div class="flex justify-between mb-4">
-        <h3 class="font-bold text-xl">Earn Live - Watch Videos</h3>
+        <h3 class="font-bold text-xl">Earn Live - Watch & Earn</h3>
         <button onclick="closeTasksModal()" class="text-2xl text-zinc-400">✕</button>
       </div>
       <video id="task-video" controls class="w-full rounded-2xl" onended="videoEnded()"></video>
@@ -105,7 +116,7 @@
         <h3 class="font-bold text-xl">Visit Pages & Earn ₦2,000</h3>
         <button onclick="closeVisitModal()" class="text-2xl text-zinc-400">✕</button>
       </div>
-      <p class="text-zinc-400 text-sm mb-4">Open link and stay for at least 10 seconds to claim ₦2,000</p>
+      <p class="text-zinc-400 text-sm mb-4">Open link and stay for at least 10 seconds</p>
       <div id="pages-list" class="flex-1 overflow-auto space-y-3"></div>
     </div>
   </div>
@@ -158,420 +169,13 @@
           </button>
         </div>
 
-        <button onclick="claimDailyBonus()" class="mt-4 w-full py-5 bg-amber-500 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-amber-600">
-          <i class="fa-solid fa-gift"></i> DAILY BONUS ₦2,000
-        </button>
-
-        <button onclick="window.open ("https://ofund-withdraw.vercel.app/', '_blank')"class="mt-3 w-full py-5 bg-sky-500 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-sky-600">
+        <button onclick="window.open('https://ofunds-withdraw.vercel.app/', '_blank')" class="mt-4 w-full bg-sky-500 py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-sky-600">
           <i class="fa-solid fa-money-bill-wave"></i> WITHDRAW
         </button>
       </div>
 
       <div class="mt-8">
-        <h3 class="font-bold text-lg mb-4">
-          <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ofunds - Testimonials</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap');
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            margin: 0;
-            padding: 60px 20px;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 50px;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 24px;
-        }
-
-        .testimonial-card {
-            background: #1e2937;
-            border-radius: 20px;
-            padding: 28px;
-            border: 1px solid #334155;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15), 
-                       0 8px 10px -6px rgb(0 0 0 / 0.15);
-            border-color: #6366f1;
-        }
-
-        .quote-icon {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            font-size: 2.8rem;
-            opacity: 0.08;
-            line-height: 1;
-            font-family: serif;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .avatar {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-right: 16px;
-            flex-shrink: 0;
-        }
-
-        .stars {
-            color: #fbbf24;
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-        }
-
-        .comment {
-            font-size: 1rem;
-            color: #cbd5e1;
-            margin-bottom: 20px;
-        }
-
-        .user-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .user-email {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .platform-badge {
-            display: inline-block;
-            background: #22c55e20;
-            color: #4ade80;
-            font-size: 0.8rem;
-            padding: 4px 14px;
-            border-radius: 9999px;
-            margin-top: 16px;
-            font-weight: 500;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        
-        <p class="subtitle">Watch videos. Earn real money. Here's what our community is saying.</p>
-
-        <div class="testimonials-grid">
-
-            <!-- Testimonial 1 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">CM</div>
-                    <div>
-                        <p class="user-name">Chioma Mbah</p>
-                        <p class="user-email">chioma.mbah92@gmail.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"I've made over ₦520,000 in just two weeks by watching videos during my commute. Ofunds actually pays out on time!"</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 2 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">JD</div>
-                    <div>
-                        <p class="user-name">John Adeyemi</p>
-                        <p class="user-email">john.adeyemi88@yahoo.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★☆</div>
-                <p class="comment">"Best side hustle I've found. I watch 30–40 mins daily and get paid every Friday. Super consistent."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 3 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #14b8a6, #22d3ee);">AP</div>
-                    <div>
-                        <p class="user-name">Aisha Popoola</p>
-                        <p class="user-email">aisha.popoola01@outlook.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"Love how simple it is. I just watch videos I enjoy and actually get money in my account. Game changer."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 4 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #eab308);">MR</div>
-                    <div>
-                        <p class="user-name">Michael Rotimi</p>
-                        <p class="user-email">michael.rotimi1995@gmail.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"Made ₦280,000 last month. The payout process is smooth and fast. Highly recommend Ofunds."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 5 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #8b5cf6, #c026d3);">LK</div>
-                    <div>
-                        <p class="user-name">Lara Kolawole</p>
-                        <p class="user-email">lara.kolawole88@hotmail.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"I was skeptical at first, but after my first payout, I’m convinced. Great platform!"</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 6 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #ef4444, #f97316);">RB</div>
-                    <div>
-                        <p class="user-name">Rahman Bello</p>
-                        <p class="user-email">rahman.bello77@gmail.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★☆</div>
-                <p class="comment">"Perfect for students. I earn while studying. Already withdrawn ₦180,000 this month."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 7 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #06b67f, #10b981);">NC</div>
-                    <div>
-                        <p class="user-name">Ngozi Chukwu</p>
-                        <p class="user-email">ngozi.chukwu2024@icloud.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"The video quality is good and the earning rate is fair. I’m genuinely impressed."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 8 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">DT</div>
-                    <div>
-                        <p class="user-name">David Taiwo</p>
-                        <p class="user-email">david.taiwox@gmail.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"I’ve referred 3 friends and earned bonus money. Ofunds is actually legit."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 9 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #ec4899, #db2777);">EM</div>
-                    <div>
-                        <p class="user-name">Eberechi Madu</p>
-                        <p class="user-email">ebere.madu09@yahoo.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"I watch videos while doing chores. It’s passive income at its best. Love it!"</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 10 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">KW</div>
-                    <div>
-                        <p class="user-name">Kehinde Williams</p>
-                        <p class="user-email">kehinde.williams44@gmail.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"Fastest payout I’ve received from any app. Already at ₦145,000 this week. Solid platform."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- ==================== NEW TESTIMONIALS ==================== -->
-
-            <!-- Testimonial 11 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #14b8a6, #34d399);">TJ</div>
-                    <div>
-                        <p class="user-name">Tunde Johnson</p>
-                        <p class="user-email">tunde.johnson.ng@gmail.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"As a driver, I earn during waiting times between rides. Made ₦390,000 last month. Thank you Ofunds!"</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 12 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">OL</div>
-                    <div>
-                        <p class="user-name">Oluwatosin Lawal</p>
-                        <p class="user-email">tosin.lawal95@protonmail.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★☆</div>
-                <p class="comment">"I made ₦650,000 in my first month just watching short videos in the evening. It's addictive in a good way!"</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 13 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">PK</div>
-                    <div>
-                        <p class="user-name">Precious Kalu</p>
-                        <p class="user-email">precious.kalu27@gmail.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"The best part is I can choose videos in my language. Earned ₦142,000 this week while breastfeeding my baby."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 14 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #eab308, #f59e0b);">AM</div>
-                    <div>
-                        <p class="user-name">Ahmed Musa</p>
-                        <p class="user-email">ahmed.musa2023@yahoo.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"Withdrew ₦780,000 after 6 weeks. This is the most reliable earning app I've used in Nigeria."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 15 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #ec4899, #db2777);">SO</div>
-                    <div>
-                        <p class="user-name">Sophia Okafor</p>
-                        <p class="user-email">sophia.okafor@zoho.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★☆</div>
-                <p class="comment">"I use it during my lunch break at work. Small consistent earnings that add up nicely."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 16 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">RA</div>
-                    <div>
-                        <p class="user-name">Rotimi Adebayo</p>
-                        <p class="user-email">rotimi.a1998@outlook.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"Got my first ₦75,000 payout in under 48 hours. The speed is impressive."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 17 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #10b981, #34d399);">MF</div>
-                    <div>
-                        <p class="user-name">Funke Martins</p>
-                        <p class="user-email">funke.martins.teacher@gmail.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"As a teacher, I earn extra while grading papers. Already paid my NEPA bill with Ofunds earnings."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 18 -->
-            <div class="testimonial-card">
-                <div class="quote-icon">“</div>
-                <div class="user-info">
-                    <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">IK</div>
-                    <div>
-                        <p class="user-name">Ibrahim Kabir</p>
-                        <p class="user-email">ibrahim.kabir92@live.com</p>
-                    </div>
-                </div>
-                <div class="stars">★★★★★</div>
-                <p class="comment">"The referral program is fire! Earned ₦270,000 just from inviting my friends."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-        </div>
-                                          </div>
-        </h3>
+        <h3 class="font-bold text-lg mb-4">What Users Say</h3>
         <div id="app-comments" class="space-y-4"></div>
       </div>
     </div>
@@ -645,17 +249,25 @@
       { src: "b56.mp4", title: "Business Promo 56" }
     ];
 
-    const visitLinks = [
-      {id:1, name:"Viva Cosmetics", url:"https://www.facebook.com/VivaCosmetics"},
-      {id:2, name:"Tejuosho Shopping", url:"https://www.facebook.com/Tejuoshoshoppingcentre"},
-      {id:3, name:"Hakuna Human Hair", url:"https://www.facebook.com/profile.php?id=61567096250869"},
-      {id:4, name:"Luxury Sandals", url:"https://youtube.com"},
-      {id:5, name:"China Shopping", url:"https://youtube.com"},
-      {id:6, name:"MelonyPine Parfait", url:"https://youtube.com"},
-      {id:7, name:"Cyncel Cosmetics", url:"https://www.facebook.com/CyncelCosmetics"},
-      {id:8, name:"Fashion Trends NG", url:"https://www.facebook.com"},
-      {id:9, name:"Tech Gadgets", url:"https://youtube.com"},
-      {id:10, name:"Business Motivation", url:"https://youtube.com"}
+    const fbPages = [
+      { id: 1, name: "Viva Cosmetics", url: "https://www.facebook.com/VivaCosmetics", desc: "Premium Cosmetics" },
+      { id: 2, name: "Tejuosho Shopping Centre", url: "https://www.facebook.com/Tejuoshoshoppingcentre", desc: "Shopping & Wholesale" },
+      { id: 3, name: "Hakuna Human Hair", url: "https://www.facebook.com/profile.php?id=61567096250869", desc: "Human Hair Factory" },
+      { id: 4, name: "Luxury Sandals", url: "https://youtube.com", desc: "Sandals Wholesale" },
+      { id: 5, name: "MelonyPine Parfait", url: "https://youtube.com", desc: "Parfait Business" },
+      { id: 6, name: "Cyncel Cosmetics", url: "https://www.facebook.com/CyncelCosmetics", desc: "Cosmetics Wholesale" },
+      { id: 7, name: "China Shopping", url: "https://youtube.com", desc: "China Import" },
+      { id: 8, name: "Fashion Trends NG", url: "https://www.facebook.com", desc: "Latest Fashion" },
+      { id: 9, name: "Tech Gadgets NG", url: "https://youtube.com", desc: "Gadgets Review" },
+      { id: 10, name: "Business Motivation", url: "https://youtube.com", desc: "Motivational Content" }
+    ];
+
+    const appComments = [
+      { name: "Aisha Bello (aisha@gmail.com)", comment: "OFUNDS paid my debt within 2 weeks. The videos are easy and payout is fast!" },
+      { name: "Chinedu Okoro (chinedu@gmail.com)", comment: "I earned ₦86,000 just by watching videos and liking pages. Best earning app!" },
+      { name: "Fatima Yusuf (fatima@gmail.com)", comment: "The system really pays. I cleared my rent with the money I made here." },
+      { name: "Emeka Johnson (emeka@gmail.com)", comment: "Simple tasks, real money. I recommend OFUNDS to everyone." },
+      { name: "Zainab Ahmed (zainab@gmail.com)", comment: "Watching videos and engaging on pages helped me pay my school fees." }
     ];
 
     let activeTimers = {};
@@ -723,11 +335,12 @@
       const container = document.getElementById('pages-list');
       container.innerHTML = '';
 
-      visitLinks.forEach(item => {
+      fbPages.forEach(item => {
         const card = document.createElement('div');
         card.className = "bg-zinc-800 p-5 rounded-3xl";
         card.innerHTML = `
           <h4 class="font-semibold">${item.name}</h4>
+          <p class="text-xs text-zinc-400 mt-1">${item.desc}</p>
           <button onclick="startVisit(\( {item.id})" id="btn- \){item.id}" 
                   class="mt-4 w-full bg-yellow-400 text-zinc-900 py-3 rounded-2xl font-bold">
             OPEN PAGE (Stay 10s)
@@ -738,14 +351,14 @@
     }
 
     function startVisit(id) {
-      const item = visitLinks.find(x => x.id === id);
+      const item = fbPages.find(x => x.id === id);
       window.open(item.url, '_blank');
 
       const btn = document.getElementById(`btn-${id}`);
       btn.disabled = true;
       btn.textContent = "⏳ Waiting 10 seconds...";
 
-      activeTimers[id] = setTimeout(() => {
+      setTimeout(() => {
         btn.textContent = "✅ Claim ₦2,000";
         btn.onclick = () => completeVisit(id);
         btn.disabled = false;
@@ -761,21 +374,6 @@
       }
       const btn = document.getElementById(`btn-${id}`);
       if (btn) btn.textContent = "Completed ✓";
-    }
-
-    function claimDailyBonus() {
-      const today = new Date().toDateString();
-      if (localStorage.getItem('dailyBonusDate') === today) {
-        alert("Already claimed today. Come back tomorrow!");
-        return;
-      }
-      if (balance < MAX_BALANCE) {
-        balance += 2000;
-        updateBalanceDisplay();
-        saveBalance();
-        localStorage.setItem('dailyBonusDate', today);
-        alert("🎉 ₦2,000 Daily Bonus Credited!");
-      }
     }
 
     function updateBalanceDisplay() {
@@ -817,8 +415,7 @@
       alert("Account created! Login now.");
       switchTab(0);
     }
-
-    function continueToDashboard() {
+function continueToDashboard() {
       document.getElementById('welcome-modal').classList.add('hidden');
       document.getElementById('dashboard').classList.remove('hidden');
       document.getElementById('welcome-name').textContent = `Welcome, ${currentUser ? currentUser.firstname : 'User'}`;
@@ -844,6 +441,7 @@
         icon.classList.replace('fa-eye-slash', 'fa-eye');
       }
     }
+
     function toggleBalanceVisibility() {
       isVisible = !isVisible;
       const bal = document.getElementById('balance');
@@ -879,9 +477,5 @@
       switchTab(0);
     };
   </script>
-                                                             <
-</body>
-                    
 </body>
 </html>
-    
