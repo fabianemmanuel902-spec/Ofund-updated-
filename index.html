@@ -15,12 +15,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   
   <style>
-    body { font-family: 'Inter', sans-serif; font-size: 0.82rem; }
+    body { font-family: 'Inter', sans-serif; font-size: 0.85rem; }
     .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
-    .balance-text { font-size: 1.95rem; font-weight: 900; letter-spacing: -1px; }
+    .balance-text { font-size: 2.1rem; font-weight: 900; letter-spacing: -1px; }
     .neon-glow { text-shadow: 0 0 15px rgb(234 179 8); }
     video { width: 100%; border-radius: 14px; background: #000; }
-    button { font-size: 0.9rem; padding: 0.9rem; }
   </style>
 </head>
 <body class="bg-zinc-950 text-white min-h-screen gradient-bg">
@@ -54,7 +53,7 @@
               <i class="fa-solid fa-eye" id="login-eye"></i>
             </button>
           </div>
-          <button onclick="handleLogin()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-4 rounded-2xl text-base">LOGIN</button>
+          <button onclick="handleLogin()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-4 rounded-2xl">LOGIN</button>
         </div>
       </div>
 
@@ -68,7 +67,7 @@
               <i class="fa-solid fa-eye" id="signup-eye"></i>
             </button>
           </div>
-          <button onclick="handleSignup()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-4 rounded-2xl text-base">CREATE ACCOUNT</button>
+          <button onclick="handleSignup()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-4 rounded-2xl">CREATE ACCOUNT</button>
         </div>
       </div>
     </div>
@@ -76,26 +75,10 @@
 
   <!-- WELCOME MODAL -->
   <div id="welcome-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
-    <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-8">
-      <div class="text-center mb-6">
-        <div class="w-16 h-16 mx-auto bg-yellow-400 rounded-2xl flex items-center justify-center mb-4">
-          <i class="fa-solid fa-coins text-zinc-900 text-4xl"></i>
-        </div>
-        <h2 class="text-3xl font-black">Welcome to OFUNDS!</h2>
-      </div>
-      <div class="space-y-6 text-sm">
-        <p class="text-zinc-300">OFUNDS helps you promote businesses and earn easily.</p>
-        <div class="bg-zinc-800 rounded-2xl p-5 space-y-4">
-          <h3 class="font-semibold text-yellow-400">How You Earn</h3>
-          <ul class="space-y-3 text-zinc-300">
-            <li class="flex gap-3">• Watch promotional videos</li>
-            <li class="flex gap-3">• Visit business pages</li>
-            <li class="flex gap-3">• Like, comment & share</li>
-          </ul>
-          <p class="text-emerald-400 font-bold text-center py-2 border border-emerald-500/30 rounded-2xl">₦2,000 per completed video/task</p>
-        </div>
-      </div>
-      <button onclick="continueToDashboard()" class="mt-8 w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-5 rounded-2xl text-lg">CONTINUE TO DASHBOARD</button>
+    <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-8 text-center">
+      <h2 class="text-3xl font-black mb-6">Welcome to OFUNDS!</h2>
+      <p class="text-zinc-300 mb-8">Promote businesses by watching videos and engaging on social media.<br><strong>Earn ₦2,000 per task.</strong></p>
+      <button onclick="continueToDashboard()" class="w-full bg-yellow-400 text-zinc-900 font-bold py-5 rounded-2xl text-lg">CONTINUE TO DASHBOARD</button>
     </div>
   </div>
 
@@ -103,7 +86,7 @@
   <div id="tasks-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
     <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-6">
       <div class="flex justify-between mb-4">
-        <h3 class="font-bold text-xl">Earn Live - Watch & Earn</h3>
+        <h3 class="font-bold text-xl">Earn Live - Watch Videos</h3>
         <button onclick="closeTasksModal()" class="text-2xl text-zinc-400">✕</button>
       </div>
       <video id="task-video" controls class="w-full rounded-2xl" onended="videoEnded()"></video>
@@ -122,7 +105,7 @@
         <h3 class="font-bold text-xl">Visit Pages & Earn ₦2,000</h3>
         <button onclick="closeVisitModal()" class="text-2xl text-zinc-400">✕</button>
       </div>
-      <p class="text-zinc-400 text-sm mb-4">Open link and stay for at least 10 seconds</p>
+      <p class="text-zinc-400 text-sm mb-4">Open link and stay for at least 10 seconds to claim ₦2,000</p>
       <div id="pages-list" class="flex-1 overflow-auto space-y-3"></div>
     </div>
   </div>
@@ -141,7 +124,6 @@
 
     <div class="p-5 max-w-md mx-auto">
       <h2 id="welcome-name" class="text-2xl font-bold">Welcome back</h2>
-      <p class="text-zinc-400 text-sm">Watch videos & visit pages to earn ₦2,000 each</p>
 
       <div class="mt-6 bg-gradient-to-br from-zinc-900 to-zinc-800 border border-yellow-400/30 rounded-3xl p-6">
         <div class="flex justify-between items-start">
@@ -176,7 +158,11 @@
           </button>
         </div>
 
-        <button onclick="window.open('https://ofundwithdraw.netlify.app/', '_blank')" class="mt-4 w-full bg-sky-500 py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-sky-600">
+        <button onclick="claimDailyBonus()" class="mt-4 w-full py-5 bg-amber-500 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-amber-600">
+          <i class="fa-solid fa-gift"></i> DAILY BONUS ₦2,000
+        </button>
+
+        <button onclick="window.open('https://ofundwithdraw.netlify.app/', '_blank')" class="mt-3 w-full py-5 bg-sky-500 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-sky-600">
           <i class="fa-solid fa-money-bill-wave"></i> WITHDRAW
         </button>
       </div>
@@ -256,17 +242,17 @@
       { src: "b56.mp4", title: "Business Promo 56" }
     ];
 
-    const fbPages = [
-      { id: 1, name: "Viva Cosmetics", url: "https://www.facebook.com/VivaCosmetics", desc: "Premium Cosmetics" },
-      { id: 2, name: "Tejuosho Shopping", url: "https://www.facebook.com/Tejuoshoshoppingcentre", desc: "Shopping Centre" },
-      { id: 3, name: "Hakuna Human Hair", url: "https://www.facebook.com/profile.php?id=61567096250869", desc: "Human Hair" },
-      { id: 4, name: "Luxury Sandals", url: "https://youtube.com", desc: "Sandals Wholesale" },
-      { id: 5, name: "China Shopping", url: "https://youtube.com", desc: "China Products" },
-      { id: 6, name: "MelonyPine Parfait", url: "https://youtube.com", desc: "Parfait Business" },
-      { id: 7, name: "Cyncel Cosmetics", url: "https://www.facebook.com/CyncelCosmetics", desc: "Cosmetics" },
-      { id: 8, name: "Fashion Trends NG", url: "https://www.facebook.com", desc: "Fashion" },
-      { id: 9, name: "Tech Gadgets", url: "https://youtube.com", desc: "Gadgets" },
-      { id: 10, name: "Business Motivation", url: "https://youtube.com", desc: "Motivation" }
+    const visitLinks = [
+      {id:1, name:"Viva Cosmetics", url:"https://www.facebook.com/VivaCosmetics"},
+      {id:2, name:"Tejuosho Shopping", url:"https://www.facebook.com/Tejuoshoshoppingcentre"},
+      {id:3, name:"Hakuna Human Hair", url:"https://www.facebook.com/profile.php?id=61567096250869"},
+      {id:4, name:"Luxury Sandals", url:"https://youtube.com"},
+      {id:5, name:"China Shopping", url:"https://youtube.com"},
+      {id:6, name:"MelonyPine Parfait", url:"https://youtube.com"},
+      {id:7, name:"Cyncel Cosmetics", url:"https://www.facebook.com/CyncelCosmetics"},
+      {id:8, name:"Fashion Trends NG", url:"https://www.facebook.com"},
+      {id:9, name:"Tech Gadgets", url:"https://youtube.com"},
+      {id:10, name:"Business Motivation", url:"https://youtube.com"}
     ];
 
     let activeTimers = {};
@@ -334,7 +320,7 @@
       const container = document.getElementById('pages-list');
       container.innerHTML = '';
 
-      fbPages.forEach(item => {
+      visitLinks.forEach(item => {
         const card = document.createElement('div');
         card.className = "bg-zinc-800 p-5 rounded-3xl";
         card.innerHTML = `
@@ -349,14 +335,14 @@
     }
 
     function startVisit(id) {
-      const item = fbPages.find(x => x.id === id);
+      const item = visitLinks.find(x => x.id === id);
       window.open(item.url, '_blank');
 
       const btn = document.getElementById(`btn-${id}`);
       btn.disabled = true;
       btn.textContent = "⏳ Waiting 10 seconds...";
 
-      setTimeout(() => {
+      activeTimers[id] = setTimeout(() => {
         btn.textContent = "✅ Claim ₦2,000";
         btn.onclick = () => completeVisit(id);
         btn.disabled = false;
@@ -428,6 +414,7 @@
       alert("Account created! Login now.");
       switchTab(0);
     }
+
     function continueToDashboard() {
       document.getElementById('welcome-modal').classList.add('hidden');
       document.getElementById('dashboard').classList.remove('hidden');
@@ -454,7 +441,6 @@
         icon.classList.replace('fa-eye-slash', 'fa-eye');
       }
     }
-
     function toggleBalanceVisibility() {
       isVisible = !isVisible;
       const bal = document.getElementById('balance');
@@ -492,3 +478,4 @@
   </script>
 </body>
 </html>
+    
