@@ -476,6 +476,413 @@
       switchTab(0);
     };
   </script>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofunds - Testimonials</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap');
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 60px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: #1e2937;
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid #334155;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15), 
+                       0 8px 10px -6px rgb(0 0 0 / 0.15);
+            border-color: #6366f1;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 2.8rem;
+            opacity: 0.08;
+            line-height: 1;
+            font-family: serif;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .comment {
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .user-email {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            background: #22c55e20;
+            color: #4ade80;
+            font-size: 0.8rem;
+            padding: 4px 14px;
+            border-radius: 9999px;
+            margin-top: 16px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Real Results from Ofunds</h1>
+        <p class="subtitle">Watch videos. Earn real money. Here's what our community is saying.</p>
+
+        <div class="testimonials-grid">
+
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">CM</div>
+                    <div>
+                        <p class="user-name">Chioma Mbah</p>
+                        <p class="user-email">chioma.mbah92@gmail.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"I've made over ₦520,000 in just two weeks by watching videos during my commute. Ofunds actually pays out on time!"</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">JD</div>
+                    <div>
+                        <p class="user-name">John Adeyemi</p>
+                        <p class="user-email">john.adeyemi88@yahoo.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★☆</div>
+                <p class="comment">"Best side hustle I've found. I watch 30–40 mins daily and get paid every Friday. Super consistent."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #14b8a6, #22d3ee);">AP</div>
+                    <div>
+                        <p class="user-name">Aisha Popoola</p>
+                        <p class="user-email">aisha.popoola01@outlook.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"Love how simple it is. I just watch videos I enjoy and actually get money in my account. Game changer."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #eab308);">MR</div>
+                    <div>
+                        <p class="user-name">Michael Rotimi</p>
+                        <p class="user-email">michael.rotimi1995@gmail.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"Made ₦280,000 last month. The payout process is smooth and fast. Highly recommend Ofunds."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 5 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #8b5cf6, #c026d3);">LK</div>
+                    <div>
+                        <p class="user-name">Lara Kolawole</p>
+                        <p class="user-email">lara.kolawole88@hotmail.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"I was skeptical at first, but after my first payout, I’m convinced. Great platform!"</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 6 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #ef4444, #f97316);">RB</div>
+                    <div>
+                        <p class="user-name">Rahman Bello</p>
+                        <p class="user-email">rahman.bello77@gmail.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★☆</div>
+                <p class="comment">"Perfect for students. I earn while studying. Already withdrawn ₦180,000 this month."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 7 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #06b67f, #10b981);">NC</div>
+                    <div>
+                        <p class="user-name">Ngozi Chukwu</p>
+                        <p class="user-email">ngozi.chukwu2024@icloud.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"The video quality is good and the earning rate is fair. I’m genuinely impressed."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 8 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">DT</div>
+                    <div>
+                        <p class="user-name">David Taiwo</p>
+                        <p class="user-email">david.taiwox@gmail.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"I’ve referred 3 friends and earned bonus money. Ofunds is actually legit."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 9 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #ec4899, #db2777);">EM</div>
+                    <div>
+                        <p class="user-name">Eberechi Madu</p>
+                        <p class="user-email">ebere.madu09@yahoo.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"I watch videos while doing chores. It’s passive income at its best. Love it!"</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 10 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">KW</div>
+                    <div>
+                        <p class="user-name">Kehinde Williams</p>
+                        <p class="user-email">kehinde.williams44@gmail.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"Fastest payout I’ve received from any app. Already at ₦145,000 this week. Solid platform."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- ==================== NEW TESTIMONIALS ==================== -->
+
+            <!-- Testimonial 11 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #14b8a6, #34d399);">TJ</div>
+                    <div>
+                        <p class="user-name">Tunde Johnson</p>
+                        <p class="user-email">tunde.johnson.ng@gmail.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"As a driver, I earn during waiting times between rides. Made ₦390,000 last month. Thank you Ofunds!"</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 12 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">OL</div>
+                    <div>
+                        <p class="user-name">Oluwatosin Lawal</p>
+                        <p class="user-email">tosin.lawal95@protonmail.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★☆</div>
+                <p class="comment">"I made ₦650,000 in my first month just watching short videos in the evening. It's addictive in a good way!"</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 13 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">PK</div>
+                    <div>
+                        <p class="user-name">Precious Kalu</p>
+                        <p class="user-email">precious.kalu27@gmail.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"The best part is I can choose videos in my language. Earned ₦142,000 this week while breastfeeding my baby."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 14 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #eab308, #f59e0b);">AM</div>
+                    <div>
+                        <p class="user-name">Ahmed Musa</p>
+                        <p class="user-email">ahmed.musa2023@yahoo.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"Withdrew ₦780,000 after 6 weeks. This is the most reliable earning app I've used in Nigeria."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 15 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #ec4899, #db2777);">SO</div>
+                    <div>
+                        <p class="user-name">Sophia Okafor</p>
+                        <p class="user-email">sophia.okafor@zoho.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★☆</div>
+                <p class="comment">"I use it during my lunch break at work. Small consistent earnings that add up nicely."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 16 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">RA</div>
+                    <div>
+                        <p class="user-name">Rotimi Adebayo</p>
+                        <p class="user-email">rotimi.a1998@outlook.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"Got my first ₦75,000 payout in under 48 hours. The speed is impressive."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 17 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #10b981, #34d399);">MF</div>
+                    <div>
+                        <p class="user-name">Funke Martins</p>
+                        <p class="user-email">funke.martins.teacher@gmail.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"As a teacher, I earn extra while grading papers. Already paid my NEPA bill with Ofunds earnings."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+            <!-- Testimonial 18 -->
+            <div class="testimonial-card">
+                <div class="quote-icon">“</div>
+                <div class="user-info">
+                    <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">IK</div>
+                    <div>
+                        <p class="user-name">Ibrahim Kabir</p>
+                        <p class="user-email">ibrahim.kabir92@live.com</p>
+                    </div>
+                </div>
+                <div class="stars">★★★★★</div>
+                <p class="comment">"The referral program is fire! Earned ₦270,000 just from inviting my friends."</p>
+                <div class="platform-badge">Verified Earner</div>
+            </div>
+
+        </div>
+    </div>
+</body>
+                      </html>
 </body>
 </html>
     
