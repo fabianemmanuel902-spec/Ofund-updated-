@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OFUNDS - Earn Live</title>
+  <title>VIDAPAY - Earn Live</title>
   
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="favicon.png">
   <link rel="apple-touch-icon" href="icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#eab308">
+  <meta name="theme-color" content="#b91c1c">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   
   <style>
     body { font-family: 'Inter', sans-serif; font-size: 0.85rem; }
-    .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
+    .gradient-bg { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); }
     .balance-text { font-size: 2.1rem; font-weight: 900; letter-spacing: -1px; }
-    .neon-glow { text-shadow: 0 0 15px rgb(234 179 8); }
+    .neon-glow { text-shadow: 0 0 15px rgb(239 68 68); }
     video { width: 100%; border-radius: 14px; background: #000; }
   </style>
 </head>
@@ -29,12 +29,12 @@
     <div class="max-w-md w-full">
       <div class="flex justify-center mb-8">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-yellow-400 rounded-2xl flex items-center justify-center">
-            <i class="fa-solid fa-coins text-zinc-900 text-2xl"></i>
+          <div class="w-10 h-10 bg-red-600 rounded-2xl flex items-center justify-center">
+            <i class="fa-solid fa-coins text-white text-2xl"></i>
           </div>
           <div>
-            <h1 class="text-3xl font-black tracking-tighter">OFUNDS</h1>
-            <p class="text-yellow-400 text-xs -mt-1">EARN LIVE</p>
+            <h1 class="text-3xl font-black tracking-tighter">VIDAPAY</h1>
+            <p class="text-red-500 text-xs -mt-1">EARN LIVE</p>
           </div>
         </div>
       </div>
@@ -46,28 +46,28 @@
 
       <div id="login-form">
         <div class="space-y-4">
-          <input type="email" id="login-email" placeholder="Email address" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+          <input type="email" id="login-email" placeholder="Email address" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-red-500 text-sm">
           <div class="relative">
-            <input type="password" id="login-password" placeholder="Password" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+            <input type="password" id="login-password" placeholder="Password" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-red-500 text-sm">
             <button onclick="togglePassword('login-password')" class="absolute right-5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white">
               <i class="fa-solid fa-eye" id="login-eye"></i>
             </button>
           </div>
-          <button onclick="handleLogin()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-4 rounded-2xl">LOGIN</button>
+          <button onclick="handleLogin()" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-4 rounded-2xl">LOGIN</button>
         </div>
       </div>
 
       <div id="signup-form" class="hidden">
         <div class="space-y-4">
-          <input type="text" id="signup-firstname" placeholder="First name" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
-          <input type="email" id="signup-email" placeholder="Email address" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+          <input type="text" id="signup-firstname" placeholder="First name" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-red-500 text-sm">
+          <input type="email" id="signup-email" placeholder="Email address" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-red-500 text-sm">
           <div class="relative">
-            <input type="password" id="signup-password" placeholder="Create password" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-yellow-400 text-sm">
+            <input type="password" id="signup-password" placeholder="Create password" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 focus:outline-none focus:border-red-500 text-sm">
             <button onclick="togglePassword('signup-password')" class="absolute right-5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white">
               <i class="fa-solid fa-eye" id="signup-eye"></i>
             </button>
           </div>
-          <button onclick="handleSignup()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-4 rounded-2xl">CREATE ACCOUNT</button>
+          <button onclick="handleSignup()" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-4 rounded-2xl">CREATE ACCOUNT</button>
         </div>
       </div>
     </div>
@@ -76,12 +76,12 @@
   <!-- WELCOME MODAL -->
   <div id="welcome-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
     <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-8 text-center">
-      <h2 class="text-3xl font-black mb-6">Welcome to OFUNDS!</h2>
+      <h2 class="text-3xl font-black mb-6">Welcome to VIDAPAY!</h2>
       <p class="text-zinc-300 mb-6">This app is designed for users to promote people's businesses and get paid by watching videos, going to business social media pages, liking, commenting.</p>
-      <p class="text-emerald-400 font-bold mb-8">Then get paid ₦2,000 per tasks</p>
+      <p class="text-red-400 font-bold mb-8">Then get paid ₦2,000 per tasks</p>
       
       <div class="bg-zinc-800 rounded-2xl p-5 text-left text-sm mb-8">
-        <h3 class="font-semibold text-yellow-400 mb-3">How You Earn</h3>
+        <h3 class="font-semibold text-red-400 mb-3">How You Earn</h3>
         <ul class="space-y-3 text-zinc-300">
           <li class="flex gap-3">• Watch promotional videos</li>
           <li class="flex gap-3">• Visit business pages</li>
@@ -89,7 +89,7 @@
         </ul>
       </div>
       
-      <button onclick="continueToDashboard()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-bold py-5 rounded-2xl text-lg">CONTINUE TO DASHBOARD</button>
+      <button onclick="continueToDashboard()" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-5 rounded-2xl text-lg">CONTINUE TO DASHBOARD</button>
     </div>
   </div>
 
@@ -104,7 +104,7 @@
       <div id="task-info" class="text-center text-sm text-zinc-400 mt-3"></div>
       <div class="flex gap-3 mt-6">
         <button onclick="closeTasksModal()" class="flex-1 py-4 border border-zinc-600 rounded-2xl">CLOSE</button>
-        <button onclick="nextVideo()" id="next-btn" class="flex-1 py-4 bg-yellow-400 text-zinc-900 font-bold rounded-2xl hidden">NEXT VIDEO</button>
+        <button onclick="nextVideo()" id="next-btn" class="flex-1 py-4 bg-red-600 text-white font-bold rounded-2xl hidden">NEXT VIDEO</button>
       </div>
     </div>
   </div>
@@ -125,10 +125,10 @@
   <div id="dashboard" class="hidden min-h-screen pb-12">
     <nav class="bg-zinc-900 px-5 py-4 flex justify-between items-center border-b border-zinc-800">
       <div class="flex items-center gap-2">
-        <div class="w-8 h-8 bg-yellow-400 rounded-2xl flex items-center justify-center">
-          <i class="fa-solid fa-coins text-zinc-900 text-xl"></i>
+        <div class="w-8 h-8 bg-red-600 rounded-2xl flex items-center justify-center">
+          <i class="fa-solid fa-coins text-white text-xl"></i>
         </div>
-        <h1 class="font-black text-xl tracking-tighter">OFUNDS</h1>
+        <h1 class="font-black text-xl tracking-tighter">VIDAPAY</h1>
       </div>
       <button onclick="logout()" class="text-zinc-400"><i class="fa-solid fa-right-from-bracket"></i></button>
     </nav>
@@ -136,12 +136,12 @@
     <div class="p-5 max-w-md mx-auto">
       <h2 id="welcome-name" class="text-2xl font-bold">Welcome back</h2>
 
-      <div class="mt-6 bg-gradient-to-br from-zinc-900 to-zinc-800 border border-yellow-400/30 rounded-3xl p-6">
+      <div class="mt-6 bg-gradient-to-br from-zinc-900 to-zinc-800 border border-red-500/30 rounded-3xl p-6">
         <div class="flex justify-between items-start">
           <div>
             <p class="uppercase text-xs tracking-widest text-zinc-400">TOTAL BALANCE</p>
             <div class="flex items-baseline mt-2">
-              <span class="text-3xl font-black text-yellow-400">₦</span>
+              <span class="text-3xl font-black text-red-500">₦</span>
               <span id="balance" class="balance-text neon-glow ml-1">0</span>
             </div>
           </div>
@@ -156,20 +156,20 @@
             <span id="progress-text">0%</span>
           </div>
           <div class="h-2 bg-zinc-700 rounded-full overflow-hidden">
-            <div id="progress-bar" class="h-2 bg-yellow-400 rounded-full transition-all" style="width: 0%"></div>
+            <div id="progress-bar" class="h-2 bg-red-600 rounded-full transition-all" style="width: 0%"></div>
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3 mt-6">
-          <button onclick="openTasksModal()" class="py-5 bg-emerald-500 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-emerald-600">
+          <button onclick="openTasksModal()" class="py-5 bg-red-600 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-red-500 text-white">
             <i class="fa-solid fa-play"></i> Watch Videos
           </button>
-          <button onclick="openVisitModal()" class="py-5 bg-violet-500 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-violet-600">
+          <button onclick="openVisitModal()" class="py-5 bg-red-600 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-red-500 text-white">
             <i class="fa-solid fa-globe"></i> Visit Pages
           </button>
         </div>
 
-        <button onclick="window.open('https://ofunds-withdraw.vercel.app/', '_blank')" class="mt-4 w-full bg-sky-500 py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-sky-600">
+        <button onclick="window.open('https://ofunds-withdraw.vercel.app/', '_blank')" class="mt-4 w-full bg-red-600 py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-red-500 text-white">
           <i class="fa-solid fa-money-bill-wave"></i> WITHDRAW
         </button>
       </div>
@@ -263,10 +263,10 @@
     ];
 
     const appComments = [
-      { name: "Aisha Bello (aisha@gmail.com)", comment: "OFUNDS paid my debt within 2 weeks. The videos are easy and payout is fast!" },
+      { name: "Aisha Bello (aisha@gmail.com)", comment: "VIDAPAY paid my debt within 2 weeks. The videos are easy and payout is fast!" },
       { name: "Chinedu Okoro (chinedu@gmail.com)", comment: "I earned ₦86,000 just by watching videos and liking pages. Best earning app!" },
       { name: "Fatima Yusuf (fatima@gmail.com)", comment: "The system really pays. I cleared my rent with the money I made here." },
-      { name: "Emeka Johnson (emeka@gmail.com)", comment: "Simple tasks, real money. I recommend OFUNDS to everyone." },
+      { name: "Emeka Johnson (emeka@gmail.com)", comment: "Simple tasks, real money. I recommend VIDAPAY to everyone." },
       { name: "Zainab Ahmed (zainab@gmail.com)", comment: "Watching videos and engaging on pages helped me pay my school fees." }
     ];
 
@@ -342,7 +342,7 @@
           <h4 class="font-semibold">${item.name}</h4>
           <p class="text-xs text-zinc-400 mt-1">${item.desc}</p>
           <button onclick="startVisit(\( {item.id})" id="btn- \){item.id}" 
-                  class="mt-4 w-full bg-yellow-400 text-zinc-900 py-3 rounded-2xl font-bold">
+                  class="mt-4 w-full bg-red-600 text-white py-3 rounded-2xl font-bold">
             OPEN PAGE (Stay 10s)
           </button>
         `;
@@ -415,14 +415,14 @@
       alert("Account created! Login now.");
       switchTab(0);
     }
-function continueToDashboard() {
+
+    function continueToDashboard() {
       document.getElementById('welcome-modal').classList.add('hidden');
       document.getElementById('dashboard').classList.remove('hidden');
       document.getElementById('welcome-name').textContent = `Welcome, ${currentUser ? currentUser.firstname : 'User'}`;
       updateBalanceDisplay();
       renderAppComments();
     }
-
     function switchTab(tab) {
       document.getElementById('login-form').classList.toggle('hidden', tab === 1);
       document.getElementById('signup-form').classList.toggle('hidden', tab === 0);
@@ -468,7 +468,7 @@ function continueToDashboard() {
       appComments.forEach(c => {
         const div = document.createElement('div');
         div.className = "bg-zinc-900 border border-zinc-700 rounded-3xl p-5";
-        div.innerHTML = `<p class="italic">"${c.comment}"</p><p class="text-yellow-400 text-sm mt-3">- ${c.name}</p>`;
+        div.innerHTML = `<p class="italic">"${c.comment}"</p><p class="text-red-400 text-sm mt-3">- ${c.name}</p>`;
         container.appendChild(div);
       });
     }
@@ -479,3 +479,4 @@ function continueToDashboard() {
   </script>
 </body>
 </html>
+      
