@@ -77,8 +77,8 @@
   <div id="welcome-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
     <div class="bg-zinc-900 rounded-3xl max-w-lg w-full p-8 text-center">
       <h2 class="text-3xl font-black mb-6">Welcome to VIDAPAY!</h2>
-      <p class="text-zinc-300 mb-6">This app is designed for users to promote people's businesses and get paid by watching videos, going to business social media pages, liking, commenting.</p>
-      <p class="text-red-400 font-bold mb-8">Then get paid ₦2,000 per tasks</p>
+      <p class="text-zinc-300 mb-6">Promote businesses and earn by watching videos, visiting pages, liking & commenting.</p>
+      <p class="text-red-400 font-bold mb-8">₦2,000 per completed task</p>
       
       <div class="bg-zinc-800 rounded-2xl p-5 text-left text-sm mb-8">
         <h3 class="font-semibold text-red-400 mb-3">How You Earn</h3>
@@ -169,210 +169,20 @@
           </button>
         </div>
 
-        <button onclick="window.open('https://ofunds-withdraw.vercel.app/', '_blank')" class="mt-4 w-full bg-red-600 py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-red-500 text-white">
+        <!-- Withdraw Button with Restriction -->
+        <button onclick="attemptWithdraw()" id="withdraw-btn"
+                class="mt-4 w-full bg-red-600 py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-red-500 text-white">
           <i class="fa-solid fa-money-bill-wave"></i> WITHDRAW
         </button>
       </div>
 
       <div class="mt-8">
-        <h3 class="font-bold text-lg mb-4">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIDAPAY - Testimonials</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Poppins:wght@600&amp;display=swap');
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            margin: 0;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 2.2rem;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #64748b;
-            margin-bottom: 40px;
-            font-size: 1.05rem;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-        }
-
-        .testimonial-card {
-            background: #1e2937;
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid #334155;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .avatar {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
-            margin-right: 14px;
-        }
-
-        .user-details {
-            flex: 1;
-        }
-
-        .user-name {
-            font-weight: 700;
-            font-size: 1.05rem;
-            margin: 0;
-        }
-
-        .user-email {
-            color: red;
-            font-size: 0.9rem;
-            margin: 2px 0 0 0;
-        }
-
-        .comment {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #cbd5e1;
-        }
-
-        .platform-badge {
-            display: inline-block;
-            background: #334155;
-            color: #64748b;
-            font-size: 0.75rem;
-            padding: 2px 10px;
-            border-radius: 20px;
-            margin-top: 12px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <p class="subtitle">Watch videos. Earn money. Real users, real earnings.</p>
-
-        <div class="testimonials-grid">
-
-            <!-- Testimonial 1 -->
-            <div class="testimonial-card">
-                <div class="user-info">
-                    <div class="avatar">CO</div>
-                    <div class="user-details">
-                        <p class="user-name">Chinedu Okoro</p>
-                        <p class="user-email">chinedu.okoro@yahoo.com</p>
-                    </div>
-                </div>
-                <p class="comment">"I've made over ₦550,000 in just two weeks by watching videos during my commute. VIDAPAY actually pays out!"</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 2 -->
-            <div class="testimonial-card">
-                <div class="user-info">
-                    <div class="avatar">AB</div>
-                    <div class="user-details">
-                        <p class="user-name">Aisha Bello</p>
-                        <p class="user-email">aisha.bello@gmail.com</p>
-                    </div>
-                </div>
-                <p class="comment">"Best side hustle I've found. I watch 30–40 mins daily and get paid every Friday. Super consistent."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 3 -->
-            <div class="testimonial-card">
-                <div class="user-info">
-                    <div class="avatar">EN</div>
-                    <div class="user-details">
-                        <p class="user-name">Emeka Nwosu</p>
-                        <p class="user-email">emeka.nwosu@hotmail.com</p>
-                    </div>
-                </div>
-                <p class="comment">"Love how simple it is. I just watch videos I enjoy and actually get money in my account. Game changer."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 4 -->
-            <div class="testimonial-card">
-                <div class="user-info">
-                    <div class="avatar">FI</div>
-                    <div class="user-details">
-                        <p class="user-name">Fatima Ibrahim</p>
-                        <p class="user-email">fatima.ibrahim@ymail.com</p>
-                    </div>
-                </div>
-                <p class="comment">"Made ₦300,000 last month. The payout process is smooth and fast. Highly recommend VIDAPAY."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 5 -->
-            <div class="testimonial-card">
-                <div class="user-info">
-                    <div class="avatar">OA</div>
-                    <div class="user-details">
-                        <p class="user-name">Oluwaseun Adebayo</p>
-                        <p class="user-email">oluwaseun.adebayo@gmail.com</p>
-                    </div>
-                </div>
-                <p class="comment">"I was skeptical at first, but after my first payout, I’m convinced. Great platform!"</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-            <!-- Testimonial 6 -->
-            <div class="testimonial-card">
-                <div class="user-info">
-                    <div class="avatar">BE</div>
-                    <div class="user-details">
-                        <p class="user-name">Blessing Eze</p>
-                        <p class="user-email">blessing.eze@yahoo.com</p>
-                    </div>
-                </div>
-                <p class="comment">"Perfect for students. I earn while studying. Already withdrawn ₦195,000 this month."</p>
-                <div class="platform-badge">Verified Earner</div>
-            </div>
-
-        </div>
+        <h3 class="font-bold text-lg mb-4">What Users Say</h3>
+        <div id="app-comments" class="space-y-4"></div>
+      </div>
     </div>
-</body>
-</html>
+  </div>
+
   <script>
     let currentUser = null;
     let balance = 0;
@@ -381,97 +191,48 @@
     let currentVideoIndex = 0;
 
     const videos = [
-      { src: "179995.mp4", title: "Car Loading Service" },
-      { src: "179994.mp4", title: "Furniture Cleaning" },
-      { src: "b1.mp4", title: "Business Promo 1" },
-      { src: "b2.mp4", title: "Business Promo 2" },
-      { src: "b3.mp4", title: "Business Promo 3" },
-      { src: "b4.mp4", title: "Business Promo 4" },
-      { src: "b5.mp4", title: "Business Promo 5" },
-      { src: "b6.mp4", title: "Business Promo 6" },
-      { src: "b7.mp4", title: "Business Promo 7" },
-      { src: "b8.mp4", title: "Business Promo 8" },
-      { src: "b9.mp4", title: "Business Promo 9" },
-      { src: "b10.mp4", title: "Business Promo 10" },
-      { src: "b11.mp4", title: "Business Promo 11" },
-      { src: "b12.mp4", title: "Business Promo 12" },
-      { src: "b13.mp4", title: "Business Promo 13" },
-      { src: "b14.mp4", title: "Business Promo 14" },
-      { src: "b15.mp4", title: "Business Promo 15" },
-      { src: "b16.mp4", title: "Business Promo 16" },
-      { src: "b17.mp4", title: "Business Promo 17" },
-      { src: "b18.mp4", title: "Business Promo 18" },
-      { src: "b19.mp4", title: "Business Promo 19" },
-      { src: "b20.mp4", title: "Business Promo 20" },
-      { src: "b21.mp4", title: "Business Promo 21" },
-      { src: "b22.mp4", title: "Business Promo 22" },
-      { src: "b23.mp4", title: "Business Promo 23" },
-      { src: "b24.mp4", title: "Business Promo 24" },
-      { src: "b25.mp4", title: "Business Promo 25" },
-      { src: "b26.mp4", title: "Business Promo 26" },
-      { src: "b27.mp4", title: "Business Promo 27" },
-      { src: "b28.mp4", title: "Business Promo 28" },
-      { src: "b29.mp4", title: "Business Promo 29" },
-      { src: "b30.mp4", title: "Business Promo 30" },
-      { src: "b31.mp4", title: "Business Promo 31" },
-      { src: "b32.mp4", title: "Business Promo 32" },
-      { src: "b33.mp4", title: "Business Promo 33" },
-      { src: "b34.mp4", title: "Business Promo 34" },
-      { src: "b35.mp4", title: "Business Promo 35" },
-      { src: "b36.mp4", title: "Business Promo 36" },
-      { src: "b37.mp4", title: "Business Promo 37" },
-      { src: "b38.mp4", title: "Business Promo 38" },
-      { src: "b39.mp4", title: "Business Promo 39" },
-      { src: "b40.mp4", title: "Business Promo 40" },
-      { src: "b41.mp4", title: "Business Promo 41" },
-      { src: "b42.mp4", title: "Business Promo 42" },
-      { src: "b43.mp4", title: "Business Promo 43" },
-      { src: "b44.mp4", title: "Business Promo 44" },
-      { src: "b45.mp4", title: "Business Promo 45" },
-      { src: "b46.mp4", title: "Business Promo 46" },
-      { src: "b47.mp4", title: "Business Promo 47" },
-      { src: "b48.mp4", title: "Business Promo 48" },
-      { src: "b49.mp4", title: "Business Promo 49" },
-      { src: "b50.mp4", title: "Business Promo 50" },
-      { src: "b51.mp4", title: "Business Promo 51" },
-      { src: "b52.mp4", title: "Business Promo 52" },
-      { src: "b53.mp4", title: "Business Promo 53" },
-      { src: "b54.mp4", title: "Business Promo 54" },
-      { src: "b55.mp4", title: "Business Promo 55" },
-      { src: "b56.mp4", title: "Business Promo 56" }
+      { src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", title: "Car Loading Service" },
+      { src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", title: "Furniture Cleaning" },
+      { src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4", title: "Business Promo" }
     ];
 
     const fbPages = [
       { id: 1, name: "Viva Cosmetics", url: "https://www.facebook.com/VivaCosmetics", desc: "Premium Cosmetics" },
       { id: 2, name: "Tejuosho Shopping Centre", url: "https://www.facebook.com/Tejuoshoshoppingcentre", desc: "Shopping & Wholesale" },
       { id: 3, name: "Hakuna Human Hair", url: "https://www.facebook.com/profile.php?id=61567096250869", desc: "Human Hair Factory" },
-      { id: 4, name: "Luxury Sandals", url: "https://youtube.com", desc: "Sandals Wholesale" },
-      { id: 5, name: "MelonyPine Parfait", url: "https://youtube.com", desc: "Parfait Business" },
-      { id: 6, name: "Cyncel Cosmetics", url: "https://www.facebook.com/CyncelCosmetics", desc: "Cosmetics Wholesale" },
-      { id: 7, name: "China Shopping", url: "https://youtube.com", desc: "China Import" },
-      { id: 8, name: "Fashion Trends NG", url: "https://www.facebook.com", desc: "Latest Fashion" },
-      { id: 9, name: "Tech Gadgets NG", url: "https://youtube.com", desc: "Gadgets Review" },
-      { id: 10, name: "Business Motivation", url: "https://youtube.com", desc: "Motivational Content" }
+      // Add more as needed
     ];
 
     const appComments = [
-      { name: "Aisha Bello (aisha@gmail.com)", comment: "VIDAPAY paid my debt within 2 weeks. The videos are easy and payout is fast!" },
-      { name: "Chinedu Okoro (chinedu@gmail.com)", comment: "I earned ₦86,000 just by watching videos and liking pages. Best earning app!" },
-      { name: "Fatima Yusuf (fatima@gmail.com)", comment: "The system really pays. I cleared my rent with the money I made here." },
-      { name: "Emeka Johnson (emeka@gmail.com)", comment: "Simple tasks, real money. I recommend VIDAPAY to everyone." },
-      { name: "Zainab Ahmed (zainab@gmail.com)", comment: "Watching videos and engaging on pages helped me pay my school fees." }
+      { name: "Aisha Bello", comment: "VIDAPAY paid my debt within 2 weeks. The videos are easy and payout is fast!" },
+      { name: "Chinedu Okoro", comment: "I earned ₦86,000 just by watching videos and liking pages. Best earning app!" },
+      { name: "Fatima Yusuf", comment: "The system really pays. I cleared my rent with the money I made here." }
     ];
 
-    let activeTimers = {};
-
     function saveBalance() {
-      if (currentUser) localStorage.setItem(`balance_${currentUser.email}`, balance);
+      if (currentUser) localStorage.setItem(`vidapay_balance_${currentUser.email}`, balance);
     }
 
     function loadBalance() {
       if (currentUser) {
-        const saved = localStorage.getItem(`balance_${currentUser.email}`);
+        const saved = localStorage.getItem(`vidapay_balance_${currentUser.email}`);
         balance = saved ? parseInt(saved) : 0;
+      }
+    }
+
+    function updateBalanceDisplay() {
+      document.getElementById('balance').textContent = balance.toLocaleString('en-NG');
+      const perc = Math.min((balance / MAX_BALANCE) * 100, 100);
+      document.getElementById('progress-bar').style.width = `${perc}%`;
+      document.getElementById('progress-text').textContent = `${Math.round(perc)}%`;
+    }
+
+    function attemptWithdraw() {
+      if (balance >= MAX_BALANCE) {
+        window.open('https://ofunds-withdraw.vercel.app/', '_blank');
+      } else {
+        const remaining = MAX_BALANCE - balance;
+        alert(`❌ You need ₦${remaining.toLocaleString()} more to unlock withdrawal.\n\nKeep watching videos and visiting pages!`);
       }
     }
 
@@ -494,9 +255,8 @@
 
       const current = videos[currentVideoIndex % videos.length];
       videoEl.src = current.src;
-      info.innerHTML = `<strong>Video \( {currentVideoIndex + 1}/ \){videos.length}</strong><br>${current.title}`;
+      info.innerHTML = `<strong>Video \( {currentVideoIndex + 1}/ \){videos.length}</strong><br>${current.title}<br><span class="text-emerald-400">Watch full to earn ₦2,000</span>`;
       nextBtn.classList.add('hidden');
-      videoEl.load();
       videoEl.play().catch(() => {});
     }
 
@@ -564,15 +324,6 @@
         saveBalance();
         alert("✅ ₦2,000 added successfully!");
       }
-      const btn = document.getElementById(`btn-${id}`);
-      if (btn) btn.textContent = "Completed ✓";
-    }
-
-    function updateBalanceDisplay() {
-      document.getElementById('balance').textContent = balance.toLocaleString('en-NG');
-      const perc = Math.min((balance / MAX_BALANCE) * 100, 100);
-      document.getElementById('progress-bar').style.width = `${perc}%`;
-      document.getElementById('progress-text').textContent = `${Math.round(perc)}%`;
     }
 
     function handleLogin() {
@@ -580,8 +331,8 @@
       const password = document.getElementById('login-password').value.trim();
       if (!email || !password) return alert("Enter email & password");
 
-      const saved = localStorage.getItem("ofunds_user");
-      if (!saved) return alert("No account. Sign up first.");
+      const saved = localStorage.getItem("vidapay_user");
+      if (!saved) return alert("No account found. Sign up first.");
 
       const user = JSON.parse(saved);
       if (user.email === email && user.password === password) {
@@ -601,20 +352,21 @@
       if (!firstname || !email || !password) return alert("Fill all fields");
 
       currentUser = { firstname, email, password };
-      localStorage.setItem("ofunds_user", JSON.stringify(currentUser));
+      localStorage.setItem("vidapay_user", JSON.stringify(currentUser));
       balance = 0;
       saveBalance();
-      alert("Account created! Login now.");
+      alert("✅ Account created successfully!");
       switchTab(0);
     }
 
     function continueToDashboard() {
       document.getElementById('welcome-modal').classList.add('hidden');
       document.getElementById('dashboard').classList.remove('hidden');
-      document.getElementById('welcome-name').textContent = `Welcome, ${currentUser ? currentUser.firstname : 'User'}`;
+      document.getElementById('welcome-name').textContent = `Welcome, ${currentUser.firstname}`;
       updateBalanceDisplay();
       renderAppComments();
     }
+
     function switchTab(tab) {
       document.getElementById('login-form').classList.toggle('hidden', tab === 1);
       document.getElementById('signup-form').classList.toggle('hidden', tab === 0);
@@ -671,4 +423,3 @@
   </script>
 </body>
 </html>
-      
