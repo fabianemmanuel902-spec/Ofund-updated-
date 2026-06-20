@@ -169,7 +169,6 @@
           </button>
         </div>
 
-        <!-- Withdraw Button with Restriction -->
         <button onclick="attemptWithdraw()" id="withdraw-btn"
                 class="mt-4 w-full bg-red-600 py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-red-500 text-white">
           <i class="fa-solid fa-money-bill-wave"></i> WITHDRAW
@@ -190,12 +189,7 @@
     let isVisible = true;
     let currentVideoIndex = 0;
 
-    const videos = [
-      { src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", title: "Car Loading Service" },
-      { src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4", title: "Furniture Cleaning" },
-      { src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4", title: "Business Promo" }
-    ];
-
+    // Full videos array restored
     const videos = [
       { src: "179995.mp4", title: "Car Loading Service" },
       { src: "179994.mp4", title: "Furniture Cleaning" },
@@ -257,12 +251,17 @@
       { src: "b56.mp4", title: "Business Promo 56" }
     ];
 
-    
     const fbPages = [
       { id: 1, name: "Viva Cosmetics", url: "https://www.facebook.com/VivaCosmetics", desc: "Premium Cosmetics" },
       { id: 2, name: "Tejuosho Shopping Centre", url: "https://www.facebook.com/Tejuoshoshoppingcentre", desc: "Shopping & Wholesale" },
       { id: 3, name: "Hakuna Human Hair", url: "https://www.facebook.com/profile.php?id=61567096250869", desc: "Human Hair Factory" },
-      // Add more as needed
+      { id: 4, name: "Luxury Sandals", url: "https://youtube.com", desc: "Sandals Wholesale" },
+      { id: 5, name: "MelonyPine Parfait", url: "https://youtube.com", desc: "Parfait Business" },
+      { id: 6, name: "Cyncel Cosmetics", url: "https://www.facebook.com/CyncelCosmetics", desc: "Cosmetics Wholesale" },
+      { id: 7, name: "China Shopping", url: "https://youtube.com", desc: "China Import" },
+      { id: 8, name: "Fashion Trends NG", url: "https://www.facebook.com", desc: "Latest Fashion" },
+      { id: 9, name: "Tech Gadgets NG", url: "https://youtube.com", desc: "Gadgets Review" },
+      { id: 10, name: "Business Motivation", url: "https://youtube.com", desc: "Motivational Content" }
     ];
 
     const appComments = [
@@ -294,7 +293,7 @@
         window.open('https://ofunds-withdraw.vercel.app/', '_blank');
       } else {
         const remaining = MAX_BALANCE - balance;
-        alert(`❌ You need ₦${remaining.toLocaleString()} more to unlock withdrawal.\n\nKeep watching videos and visiting pages!`);
+        alert(`❌ Withdrawal locked!\n\nYou need ₦${remaining.toLocaleString()} more to unlock withdrawal.\n\nKeep earning!`);
       }
     }
 
@@ -319,6 +318,7 @@
       videoEl.src = current.src;
       info.innerHTML = `<strong>Video \( {currentVideoIndex + 1}/ \){videos.length}</strong><br>${current.title}<br><span class="text-emerald-400">Watch full to earn ₦2,000</span>`;
       nextBtn.classList.add('hidden');
+      videoEl.load();
       videoEl.play().catch(() => {});
     }
 
@@ -428,7 +428,6 @@
       updateBalanceDisplay();
       renderAppComments();
     }
-
     function switchTab(tab) {
       document.getElementById('login-form').classList.toggle('hidden', tab === 1);
       document.getElementById('signup-form').classList.toggle('hidden', tab === 0);
